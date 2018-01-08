@@ -1,52 +1,44 @@
 package com.scout24.hackdays;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class KeywordExtractor {
 
-    private static final String[] KEYWORDS = new String[]{
-            // Equipment
-            "Einbauküche",
-            "Garage",
-            "Stellplatz",
-            "Balkon",
-            "Terrasse",
-            "Garten",
-            "Gartenmitnutzung",
-            "Parkanlage",
-            "Personenaufzug",
-            "Gäste-WC",
-            "Keller",
-            "Hobbyraum",
-            // Transport
-            "U-Bahn",
-            "S-Bahn",
-            "Tram",
-            "Bus",
-            // Other
-            "Fahrradkeller",
-            "Grünblick",
-            "Wannenbad",
-            "Südbalkon",
-            "Echtholzparkett",
-            "Laminatfußboden",
-            "Fußbodenheizung"
-    };
+    private final String[] availableKeywords;
 
-    public static List<String> findKeywords(String target) {
-        List<String> keywords = new ArrayList<>();
+    public KeywordExtractor() {
+        Gson gson = new Gson();
+        String exposesString = null;
+        try {
+            exposesString = new String(Files.readAllBytes(Paths.get("keywords.json")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        availableKeywords = gson.fromJson(exposesString, String[].class);
+    }
+
+    public List<String> findKeywords(String target) {
+        List<String> foundKeywords = new ArrayList<>();
 
         if (target == null) {
-            return keywords;
+            return foundKeywords;
         }
 
-        for (String keyword : KEYWORDS) {
+        for (String keyword : availableKeywords) {
             if (target.contains(keyword)) {
-                keywords.add(keyword);
+                foundKeywords.add(keyword);
             }
         }
 
-        return keywords;
+        return foundKeywords;
     }
 }

@@ -1,0 +1,28 @@
+[
+  // Equipment
+  "Einbauküche",
+  "Garage",
+  "Stellplatz",
+  "Balkon",
+  "Terrasse",
+  "Garten",
+  "Gartenmitnutzung",
+  "Parkanlage",
+  "Personenaufzug",
+  "Gäste-WC",
+  "Keller",
+  "Hobbyraum",
+  // Transport
+  "U-Bahn",
+  "S-Bahn",
+  "Tram",
+  "Bus",
+  // Other
+  "Fahrradkeller",
+  "Grünblick",
+  "Wannenbad",
+  "Südbalkon",
+  "Echtholzparkett",
+  "Laminatfußboden",
+  "Fußbodenheizung"
+]

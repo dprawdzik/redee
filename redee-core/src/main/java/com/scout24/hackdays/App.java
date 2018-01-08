@@ -40,13 +40,15 @@ public class App
     }
 
     private static void extractKeywords(List<Expose> exposes) {
+        KeywordExtractor keywordExtractor = new KeywordExtractor();
+
         for(Expose expose :exposes) {
             Set<String> keywords = new HashSet<>();
-            keywords.addAll(KeywordExtractor.findKeywords(expose.title));
-            keywords.addAll(KeywordExtractor.findKeywords(expose.descriptionNote));
-            keywords.addAll(KeywordExtractor.findKeywords(expose.furnishingNote));
-            keywords.addAll(KeywordExtractor.findKeywords(expose.locationNote));
-            keywords.addAll(KeywordExtractor.findKeywords(expose.otherNote));
+            keywords.addAll(keywordExtractor.findKeywords(expose.title));
+            keywords.addAll(keywordExtractor.findKeywords(expose.descriptionNote));
+            keywords.addAll(keywordExtractor.findKeywords(expose.furnishingNote));
+            keywords.addAll(keywordExtractor.findKeywords(expose.locationNote));
+            keywords.addAll(keywordExtractor.findKeywords(expose.otherNote));
 
             System.out.println("Expose id: " + expose.id);
             System.out.println("Keywords: " + keywords);
