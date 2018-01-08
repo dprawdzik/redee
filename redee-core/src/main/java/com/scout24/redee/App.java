@@ -1,4 +1,4 @@
-package com.scout24.hackdays;
+package com.scout24.redee;
 
 /**
  * Hello world!

@@ -1,4 +1,4 @@
-package com.scout24.hackdays;
+package com.scout24.redee;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

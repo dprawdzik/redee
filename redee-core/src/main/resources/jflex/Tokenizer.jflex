@@ -3,20 +3,11 @@ package jflex;
 import java.io.StringReader;
 import java.io.IOException;
 import java.util.Iterator;
-import java.lang.NullPointerException; 
+import java.lang.NullPointerException;
 
-import de.neofonie.textmining.clustering.analysis.token.QuantityTypes;
-import de.neofonie.textmining.textanalysis.analysis.tokenizer.standard.StandardTokenizer.TokenizerType;
-import de.neofonie.textmining.textanalysis.token.Token;
-import de.neofonie.textmining.textanalysis.token.Token;
-import de.neofonie.textmining.textanalysis.analysis.tokenizer.Tokenizer;
-import de.neofonie.textmining.textanalysis.type.IType;
-import de.neofonie.textmining.textanalysis.type.AbstractType;
-import de.neofonie.textmining.textanalysis.type.ExpressiveType;
-import de.neofonie.textmining.clustering.analysis.token.CurrencyTokenFactory;
 import java.lang.UnsupportedOperationException;
-import de.neofonie.textmining.lexicon.core.LexiconException; 
-import java.util.NoSuchElementException; 
+import java.util.NoSuchElementException;
+import com.scout24.redee.extraction.jflex.*;
 
 %%
 
@@ -39,7 +30,7 @@ import java.util.NoSuchElementException;
     /**
      * Default constructor.
      */
-    public Tokenizer() throws LexiconException {
+    public Tokenizer() throws Exception {
         super();
         this.zzReader = new StringReader("");
         this.nextToken =null;
@@ -52,7 +43,7 @@ import java.util.NoSuchElementException;
      * 
      * @param input the string to be tokenized
      */
-    public Tokenizer(final String input) throws IOException, LexiconException {
+    public Tokenizer(final String input) throws IOException, Exception {
         super();
         if (input == null) {
         	throw new NullPointerException("The tokenizer does not accept 'null' strings"); 
@@ -88,7 +79,7 @@ import java.util.NoSuchElementException;
 
     
     /** {@inheritDoc} */
-    @Override
+    // @Override
     public void reInit(final String input) throws IOException {
     	StringReader stringReader = new StringReader(input);
         this.yyreset(stringReader);
@@ -98,13 +89,13 @@ import java.util.NoSuchElementException;
     
     
     /** {@inheritDoc} */
-    @Override
+    // @Override
     public void close() throws IOException {
         this.yyclose();
     }
     
     /** {@inheritDoc} */
-    @Override
+    // @Override
     public String getTokenizedString() {
         return this.text;
     }
@@ -140,19 +131,34 @@ BARE_URL   = {SYMBOL}("."{SYMBOL})*"."{DOMAIN}
 /* URL_PATH   = ("/" {SYMBOL})+ ("." {SYMBOL})? ("/")? ("?" {SYMBOL} ((";" | ":" | "@" | "&" | "=") {SYMBOL})*)? */
 URL_PATH   = (";" | ":" | "@" | "&" | "=" | "?" | "/" | "_" | "%" | "." | {LETTER} | {DIGIT})+
 
+MONTH     = ("Januar" | "Februar" | "Mai" | "Juni" | "Juli" | "August" | "Oktober" | "September" | "November" | "Dezember"
+        "Jan." | "Feb." | "Aug." | "Okt." | "Sept." | "Nov." | "Dez.")
+
 %%
 
+/* "I.B.M." */
+{DIGIT}{2}"."{DIGIT}{2}".20"{DIGIT}{2}" um "{DIGIT}{2}":"{DIGIT}{2}" Uhr"	{ Token t = new Token(yytext(), TokenType.APPOINTMENT, yychar, (yylength() + yychar)); return t; }
+
+/* 02.02.1995 */
+{DIGIT}{2}"."{DIGIT}{2}".19"{DIGIT}{2}                 	{ Token t = new Token(yytext().trim(), TokenType.DATE, yychar, (yylength() + yychar)); return t; }
+
+/*  Oktober 2014 */
+{MONTH}" "{DIGIT}{4}                                    { Token t = new Token(yytext().trim(), TokenType.DATE, yychar, (yylength() + yychar)); return t; }
+
+/* 02.02.2014 */
+{DIGIT}{2}"."{DIGIT}{2}".20"{DIGIT}{2}            	    { Token t = new Token(yytext().trim(), TokenType.DATE, yychar, (yylength() + yychar)); return t; }
+
 /* ex.: 10.01.2010, 1,2345, 1/2 */
-{DIGIT}+  ((":" | "-" | "/" | "," | ".") {DIGIT}+)*          	{ Token t = new Token(yytext(), TokenizerType.NUMERIC, yychar, (yylength() + yychar)); return t; } 
+/* {DIGIT}+  ((":" | "-" | "/" | "," | ".") {DIGIT}+)*  	{ Token t = new Token(yytext(), TokenType.NUMERIC, yychar, (yylength() + yychar)); return t; } */
 
-"&quot;"														{ Token t = new Token("\"", TokenizerType.SPECIALCHAR, yychar, (yylength() + yychar)); return t; }
+"&quot;"												{ Token t = new Token("\"", TokenType.SPECIALCHAR, yychar, (yylength() + yychar)); return t; }
 
-"&amp;"															{ Token t = new Token("&", TokenizerType.SPECIALCHAR, yychar, (yylength() + yychar)); return t; }
+"&amp;"													{ Token t = new Token("&", TokenType.SPECIALCHAR, yychar, (yylength() + yychar)); return t; }
 
-"*" | "@" | "&" | "+"  | "§"									{ Token t = new Token(yytext(), TokenizerType.SPECIALCHAR, yychar, (yylength() + yychar)); return t; }
+"*" | "@" | "&" | "+"  | "§"							{ Token t = new Token(yytext(), TokenType.SPECIALCHAR, yychar, (yylength() + yychar)); return t; }
 
 /** Ignore HTML entities */
-"&" [a-zA-Z0-9#]+ ";"                                         	{ ; }
+"&" [a-zA-Z0-9#]+ ";"                                  	{ ; }
 
 /** Ignore HTML tags */
 "<" ("/")* [a-zA-Z0-9=]+ ">"                                  	{ ; }
@@ -165,76 +171,38 @@ URL_PATH   = (";" | ":" | "@" | "&" | "=" | "?" | "/" | "_" | "%" | "." | {LETTE
 "&lt;" ("/")* [a-zA-Z0-9]+ "&gt;"                               { ; }
 
 /* "I.B.M." */
-({LETTER} "." ({LETTER} ".")+) 									{ Token t = new Token(yytext(), TokenizerType.COMPOSITE, yychar, (yylength() + yychar)); return t; }
+({LETTER} "." ({LETTER} ".")+) 									{ Token t = new Token(yytext(), TokenType.COMPOSITE, yychar, (yylength() + yychar)); return t; }
 
-/* EXAMPLE: "3 Mrd. Euro, 5 Mrd. Eur., 15 Mrd. €, 15 Tausend Franc, 1.5 Zillionen Dollar, 70 Euro, 5 Tausend JPY" */
-{DIGIT}+  (("," | "." | "'") {DIGIT}+)* + {WHITESPACE}* {NUMBERNAMES}* "."* {WHITESPACE}* {UNITOFCURRENCY} "."*
-																{ return this.currencyTokenFactory.createToken(yytext(), QuantityTypes.CURRENCY, yychar, (yylength() + yychar)); }
 
-/* EXAMPLE: "EUR 20.000.000" */
-{UNITOFCURRENCY} {WHITESPACE}* {DIGIT}+ (("," | ".") {DIGIT}+)* (",-")*
-																{ return this.currencyTokenFactory.createToken(yytext(), QuantityTypes.CURRENCY, yychar, (yylength() + yychar)); }
-																																
-/* e.g.: 'Artikel 1' 'Artikel 12 Absatz 23' */
-"Artikel" {WHITESPACE}* {DIGIT}+ ({WHITESPACE}* "Absatz" {WHITESPACE}* {DIGIT}+)* 
-							 									{ Token t = new Token(yytext(), QuantityTypes.LEGAL_JARGON, yychar, (yylength() + yychar)); return t; }
-				
-/* EUR Lex: Nr. 204/2010 */
-"Nr." {WHITESPACE}* {DIGIT}+ "/" {DIGIT}+  						{ Token t = new Token(yytext(), QuantityTypes.LEGAL_JARGON, yychar, (yylength() + yychar)); return t; }
-						 									
-/* EUR-Lex: 67/548/EWG */
-{DIGIT}+ "/" {DIGIT}+ "/EWG"									{ Token t = new Token(yytext(), QuantityTypes.LEGAL_JARGON, yychar, (yylength() + yychar)); return t; }
-							 									
-/* EUR-Lex: ABl. C 247 (Amtsblatt ) */
-"ABl." {WHITESPACE}* {LETTER}+ {WHITESPACE}* {DIGIT}+			{ Token t = new Token(yytext(), QuantityTypes.LEGAL_JARGON, yychar, (yylength() + yychar)); return t; }
-
-/* Verordnung (EG) Nr. 1782/2003 */
-("Verordnung" | "VERORDNUNG") " (" {LETTER}{1,2} ") Nr. " {DIGIT}* "/" {DIGIT}* 
-							 									{ Token t = new Token(yytext(), QuantityTypes.LEGAL_JARGON, yychar, (yylength() + yychar)); return t; }
-				
-/* § 4 Abs. 6 */
-"§ " {DIGIT}* (" Abs. " {DIGIT}*){1}							{ Token t = new Token(yytext(), QuantityTypes.LEGAL_JARGON, yychar, (yylength() + yychar)); return t; }
-							 									
-/* Veröffentlichung gemäß § 26 Abs. 1 WpHG */
-"Veröffentlichung gemäß § " {DIGIT}* (" Abs. " {DIGIT}*){1} ["WpHG"]*  
-							 									{ Token t = new Token(yytext(), QuantityTypes.LEGAL_JARGON, yychar, (yylength() + yychar)); return t; }
-
-/* ISIN DE000CZ31PX3 */
-("ISIN"|"WKN") {WHITESPACE}* (":")* {WHITESPACE}* ({MIXED} | {DIGIT}*)  
-							 									{ Token t = new Token(yytext(), QuantityTypes.LEGAL_JARGON, yychar, (yylength() + yychar)); return t; }
-
-/* 500 kg */
-{DIGIT}+ {WHITESPACE}* {WEIGHTNAME} {WHITESPACE}				{ Token t = new Token(yytext(), QuantityTypes.QUANTITY, yychar, (yylength() + yychar)); return t; }
-							 									
 // EXAMPLE: "1&1"
-{DIGIT}+ {WHITESPACE}* "&" {WHITESPACE}* {DIGIT}+				{ Token t = new Token(yytext(),TokenizerType.COMPOSITE, yychar, (yylength() + yychar)); return t; }
+{DIGIT}+ {WHITESPACE}* "&" {WHITESPACE}* {DIGIT}+				{ Token t = new Token(yytext(),TokenType.COMPOSITE, yychar, (yylength() + yychar)); return t; }
 
 /* EXAMPLE: "laptop", "walkman" */
-{LETTER} "." 												 	{ Token t = new Token(yytext(),TokenizerType.TERM, yychar, (yylength() + yychar)); return t; }
+{LETTER} "." 												 	{ Token t = new Token(yytext(),TokenType.TERM, yychar, (yylength() + yychar)); return t; }
 
 /* EXAMPLE: "Konrad-Adenauer-Stiftung" */
-({LETTER})+ ( "-" ({LETTER})+)+                                 { Token t = new Token(yytext(), TokenizerType.HYPHENATION, yychar, (yylength() + yychar)); return t; }
+({LETTER})+ ( "-" ({LETTER})+)+                                 { Token t = new Token(yytext(), TokenType.HYPHENATION, yychar, (yylength() + yychar)); return t; }
 
 /* EXAMPLE: "DVD-1080P7" */
-{MIXED} ( "-" {MIXED})+                                       	{ Token t = new Token(yytext(), TokenizerType.COMPOSITE, yychar, (yylength() + yychar));  return t; }
+{MIXED} ( "-" {MIXED})+                                       	{ Token t = new Token(yytext(), TokenType.COMPOSITE, yychar, (yylength() + yychar));  return t; }
 
-{TERM} "'" {LETTER}{1,2}                                     	{ Token t = new Token(yytext(), TokenizerType.TERM, yychar, (yylength() + yychar)); return t;}
+{TERM} "'" {LETTER}{1,2}                                     	{ Token t = new Token(yytext(), TokenType.TERM, yychar, (yylength() + yychar)); return t;}
 
-{TERM} "s'"                                                  	{ Token t = new Token(yytext(),TokenizerType.TERM, yychar, (yylength() + yychar)); return t;  }
+{TERM} "s'"                                                  	{ Token t = new Token(yytext(),TokenType.TERM, yychar, (yylength() + yychar)); return t;  }
 
-{TERM}                                                       	{ Token t = new Token(yytext(), TokenizerType.TERM, yychar, (yylength() + yychar)); return t; }
+{TERM}                                                       	{ Token t = new Token(yytext(), TokenType.TERM, yychar, (yylength() + yychar)); return t; }
 
 /* EXAMPLE: "W800i" */
-{MIXED}+                                       					{ Token t = new Token(yytext(), TokenizerType.COMPOSITE, yychar, (yylength() + yychar)); return t;  }
+{MIXED}+                                       					{ Token t = new Token(yytext(), TokenType.COMPOSITE, yychar, (yylength() + yychar)); return t;  }
 
-{BARE_URL}                                                   	{ Token t = new Token(yytext(), TokenizerType.URL, yychar, (yylength() + yychar)); return t; }
+{BARE_URL}                                                   	{ Token t = new Token(yytext(), TokenType.URL, yychar, (yylength() + yychar)); return t; }
 	
-(("http" | "https" | "ftp") "://")? {BARE_URL} {URL_PATH}?   	{ Token t = new Token(yytext(), TokenizerType.URL, yychar, (yylength() + yychar)); return t; }
+(("http" | "https" | "ftp") "://")? {BARE_URL} {URL_PATH}?   	{ Token t = new Token(yytext(), TokenType.URL, yychar, (yylength() + yychar)); return t; }
 	
-";"  | "," | "'" | ":" | "-"                  					{ Token t = new Token(yytext(), TokenizerType.PUNCTUATION, yychar, (yylength() + yychar)); return t;  }
+";"  | "," | "'" | ":" | "-"                  					{ Token t = new Token(yytext(), TokenType.PUNCTUATION, yychar, (yylength() + yychar)); return t;  }
 
-"." | "?" | "!" 								                { Token t = new Token(yytext(), TokenizerType.SENTENCEMARKER, yychar, (yylength() + yychar)); return t;  }
+"." | "?" | "!" 								                { Token t = new Token(yytext(), TokenType.SENTENCEMARKER, yychar, (yylength() + yychar)); return t;  }
 
 {WHITESPACE}+					                           		{ ; }
 
-.																{ Token t = new Token(yytext(), TokenizerType.SPECIALCHAR, yychar, (yylength() + yychar)); return t; }
+.																{ Token t = new Token(yytext(), TokenType.SPECIALCHAR, yychar, (yylength() + yychar)); return t; }
