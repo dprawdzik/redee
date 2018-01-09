@@ -1,97 +1,110 @@
 package com.scout24.redee.extraction.stanford;
 
-import com.scout24.redee.extraction.Extraction;
-import com.scout24.redee.extraction.InformationExtractor;
-import edu.stanford.nlp.ling.CoreAnnotation;
+import com.scout24.redee.exception.ResourceException;
+import com.scout24.redee.extraction.*;
+import com.scout24.redee.utils.NameResolver;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
-import edu.stanford.nlp.ling.tokensregex.MultiPatternMatcher;
-import edu.stanford.nlp.ling.tokensregex.SequenceMatchResult;
-import edu.stanford.nlp.ling.tokensregex.TokenSequenceMatcher;
-import edu.stanford.nlp.ling.tokensregex.TokenSequencePattern;
+import edu.stanford.nlp.ling.tokensregex.*;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
-import edu.stanford.nlp.trees.Tree;
-import edu.stanford.nlp.trees.TreeCoreAnnotations;
 import edu.stanford.nlp.util.CoreMap;
 import edu.stanford.nlp.util.StringUtils;
+import org.apache.commons.io.FileUtils;
+import com.scout24.utils.Utils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-import java.util.stream.Collectors;
+import java.io.IOException;
+import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 /**
  * Created by dprawdzik on 11.07.17.
  */
-public class StanfordInformationExtractor implements InformationExtractor {
+public class StanfordInformationExtractor implements InformationExtractor<DateExtraction> {
 
+    private final MultiPatternMatcher<CoreMap> multiMatcher;
     private StanfordCoreNLP pipeline;
 
-    public StanfordInformationExtractor() {
+    public StanfordInformationExtractor() throws IOException, ResourceException {
 
         Properties properties = StringUtils.argsToProperties(
                 new String[]{"-props", "stanford/StanfordCoreNlpDe.properties"});
         pipeline = new StanfordCoreNLP(properties);
+        URL url = NameResolver.resolve("stanford/pattern/date.pttrn");
+        List<String> strings = FileUtils.readLines(Utils.urlToFile(url), "UTF-8");
+        Collection<TokenSequencePattern> patterns = new ArrayList<>();
+        Env env = TokenSequencePattern.getNewEnv();
+        env.setDefaultStringMatchFlags(NodePattern.CASE_INSENSITIVE);
+        // Macros!
+        env.bind("$DAY", "/[Mm]ontag|[Dd]ienstag|[Mm]ittwoch|[Dd]onnerstag|[Ff]reitag|[Ssamstag]|[Ss]onntag/");
+        env.bind("$MONTH", "/[Jj]anuar|[Ff]ebruar|[Mm]ärz|[Aa]pril|[Mm]ai|[Jj]uli/");
+        env.bind("$SEPARATOR", "\\.");
+        env.bind("$DATEA", "(?$date /\\d+[\\.:,;-]\\d+[\\.:,;-]20\\d+/)");
+        //:|,|;|-|
+
+        for (String string : strings) {
+            TokenSequencePattern pattern = TokenSequencePattern.compile(env, string);
+            patterns.add(pattern);
+        }
+        this.multiMatcher = TokenSequencePattern.getMultiPatternMatcher(patterns);
     }
 
-    public List<Extraction> extract(String content) {
+    public Collection<DateExtraction> extract(String content) throws ParseException {
 
         Annotation annotations = pipeline.process(content);
-        List<Extraction> chunks = new ArrayList<>();
+        Collection<DateExtraction> chunks = new HashSet<>();
 
-        for (CoreMap sentence : annotations.get(CoreAnnotations.SentencesAnnotation.class)) {
+        // for (CoreMap sentence : annotations.get(CoreAnnotations.SentencesAnnotation.class)) {
+        // List<CoreLabel> tokens = sentence.get(CoreAnnotations.TokensAnnotation.class);
+        List<CoreLabel> tokens = annotations.get(CoreAnnotations.TokensAnnotation.class);
 
-            List<CoreLabel> sentences = sentence.get(CoreAnnotations.TokensAnnotation.class);
-            List<CoreLabel> tokens = sentence.get(CoreAnnotations.TokensAnnotation.class);
+        List<SequenceMatchResult<CoreMap>> nonOverlapping = multiMatcher.findNonOverlapping(tokens);
+        System.out.println("Analysing sentence: '" + annotations.get(CoreAnnotations.TextAnnotation.class) + "'");
 
-            TokenSequencePattern pattern1 = TokenSequencePattern.compile("/the/ (/first/) /day/");
-            TokenSequenceMatcher matcher1 = pattern1.getMatcher(tokens);
-            matcher1.matches();
-            matcher1.find();
-            String matched = matcher1.group();
-            System.out.println(matched);
-            matched = matcher1.group();
-            matcher1.get(0);
-            System.out.println(matched);
-            // List<CoreLabel> matchedNodes = matcher.groupNodes();
+        for (SequenceMatchResult<CoreMap> match : nonOverlapping) {
 
-            TokenSequencePattern pattern = TokenSequencePattern.compile("([ner: I-PER]+) /war|ist/ /ein?/ []{0,6} /Künstler|Schauspieler/");
-            TokenSequenceMatcher matcher = pattern.getMatcher(tokens);
-
-            while (matcher.find()) {
-                String matchedString = matcher.group();
-                List<CoreMap> matchedTokens = matcher.groupNodes();
-                System.out.println(matchedString);
+            for (int i = 0; i <= match.groupCount(); i++) {
+                String group = match.group(i);
+                System.out.println("group " + i + ": '" + group + "'");
+                chunks.add(createExtraction(match));
             }
-
-
-            for (CoreLabel token : tokens) {
-                System.out.println(labelToString(token));
-            }
-            // Tree sentences = sentence.get(TreeCoreAnnotations.TreeAnnotation.class);
-
-            /*sentences.stream().filter(subTree -> subTree.label().value().equals("NP") ||
-                    subTree.label().value().equals("MPN")).forEach(subtree -> {
-                String image = subtree.yieldWords().stream().map(StringLabel::toString).collect(Collectors.joining(" "));
-
-
-                    int start = subtree.yieldWords().get(0).beginPosition();
-                    int end = subtree.yieldWords().get(subtree.yieldWords().size() - 1).endPosition();
-                    Position position = new Position(Position.ParagraphType.VERBATIM.name(), start, end, "url");
-
-                    Ref.Term term = new Ref.Term(image, image, subtree.nodeString(), position);
-                    chunks.add(term);
-            });*/
         }
         return chunks;
     }
 
-    private String labelToString(CoreLabel token) {
-        String word = token.get(CoreAnnotations.TextAnnotation.class);
-        String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-        String ne = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
-        return word + " - pos: " + pos + " - NE: " + ne;
+    private DateExtraction createExtraction(SequenceMatchResult<CoreMap> group) throws ParseException {
+        String dayStr = group.group("$day");
+        String monthStr = group.group("$month");
+        String yearStr = group.group("$year");
+
+        String dateStr = group.group("$date");
+        dateStr = dateStr.replaceAll("[:-_,;]", ".");
+        String[] dateSplit = dateStr.split("\\.");
+        if(dateSplit[2].length() <= 2)
+            dateStr = dateSplit[0] + "." + dateSplit[1] + ".20" + dateSplit[2];
+
+        // starting time stamp
+        String timeStartStr = group.group("$timeStart");
+        if(org.apache.commons.lang3.StringUtils.isNotBlank(timeStartStr)) {
+            timeStartStr = timeStartStr.replaceAll("[-_,;.]", ":");
+            dateStr = dateStr + " " + timeStartStr;
+        }
+        Date start = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.GERMAN).parse(dateStr);
+
+        // ending time stamp
+        Date end = null;
+        String timeEndStr = group.group("$timeEnd");
+
+        if(org.apache.commons.lang3.StringUtils.isNotBlank(timeEndStr)) {
+            timeEndStr = timeEndStr.replace("[-_,;.]", ":");
+            dateStr = dateStr + " " + timeEndStr;
+            end = new SimpleDateFormat("dd.mm.yyyy HH:mm", Locale.GERMAN).parse(dateStr);
+        }
+        return new DateExtraction(start, end, group.group(0), "", Position.createEmptyPosition());
     }
+
 }
