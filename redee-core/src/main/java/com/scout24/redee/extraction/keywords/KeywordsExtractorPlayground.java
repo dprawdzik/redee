@@ -22,7 +22,7 @@ public class KeywordsExtractorPlayground {
         Gson gson = new Gson();
 
         try {
-            String exposesString = new String(Files.readAllBytes(Paths.get(RESOURCES_PATH + "exposes.json")));
+            String exposesString = new String(Files.readAllBytes(Paths.get(RESOURCES_PATH + "exposes_big.json")));
             Type listType = new TypeToken<List<Expose>>() {
             }.getType();
             List<Expose> exposes = gson.fromJson(exposesString, listType);
@@ -37,6 +37,7 @@ public class KeywordsExtractorPlayground {
     }
 
     private static void extractKeywords(List<Expose> exposes) {
+        System.out.println("Exposes count: " + exposes.size());
         for (Expose expose : exposes) {
             Set<String> keywords = new HashSet<>();
             keywords.addAll(extractor.findKeywords(expose.title));
