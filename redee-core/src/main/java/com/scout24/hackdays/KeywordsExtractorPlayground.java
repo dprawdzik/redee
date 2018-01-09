@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,16 +15,16 @@ public class KeywordsExtractorPlayground {
     public static void main(String[] args) {
         Gson gson = new Gson();
 
-                        try {
-                        String exposesString = new String(Files.readAllBytes(Paths.get("exposes.json")));
-                        Type listType = new TypeToken<List<Expose>>(){}.getType();
-                        List<Expose> exposes = gson.fromJson(exposesString, listType);
-                        extractKeywords(exposes);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+        try {
+            String exposesString = new String(Files.readAllBytes(Paths.get("redee-core/src/main/resources/scout24/exposes.json")));
+            Type listType = new TypeToken<List<Expose>>() {
+            }.getType();
+            List<Expose> exposes = gson.fromJson(exposesString, listType);
+            extractKeywords(exposes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
 
     private static void extractKeywords(List<Expose> exposes) {
         KeywordExtractor extractor = new KeywordExtractor();

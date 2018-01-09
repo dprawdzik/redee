@@ -1,16 +1,12 @@
 package com.scout24.hackdays;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Pattern;
 
 public class KeywordExtractor {
@@ -21,7 +17,7 @@ public class KeywordExtractor {
         Gson gson = new Gson();
         String exposesString = null;
         try {
-            exposesString = new String(Files.readAllBytes(Paths.get("keywords.json")));
+            exposesString = new String(Files.readAllBytes(Paths.get("redee-core/src/main/resources/scout24/keywords.json")));
         } catch (IOException e) {
             e.printStackTrace();
         }
