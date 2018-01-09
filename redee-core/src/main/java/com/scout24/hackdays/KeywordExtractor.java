@@ -10,6 +10,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 public class KeywordExtractor {
 
@@ -41,4 +43,24 @@ public class KeywordExtractor {
 
         return foundKeywords;
     }
+
+    public List<String> findKeywordsRegex(String target) {
+        List<String> foundKeywords = new ArrayList<>();
+
+        if (target == null) {
+            return foundKeywords;
+        }
+
+        String preparedTarget = target.toLowerCase();
+
+        for (String keyword : availableKeywords) {
+            Pattern pattern = Pattern.compile("(?<!(kein.{0,2}|ohne)\\s)\\b" + keyword.toLowerCase());
+            if (pattern.matcher(preparedTarget).find()) {
+                foundKeywords.add(keyword);
+            }
+        }
+
+        return foundKeywords;
+    }
+
 }
