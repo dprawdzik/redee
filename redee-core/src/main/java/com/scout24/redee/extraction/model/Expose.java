@@ -1,4 +1,4 @@
-package com.scout24.hackdays;
+package com.scout24.redee.extraction.model;
 
 public class Expose {
     public final String id;
