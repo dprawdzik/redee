@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 public class KeywordExtractor {
 
+    private static final String NEGATE_PATTERN = "(?<!(kein.{0,2}|ohne)\\s)";
     private final String[] availableKeywords;
 
     public KeywordExtractor(String[] keywords) {
@@ -22,7 +23,7 @@ public class KeywordExtractor {
         String preparedTarget = target.toLowerCase();
 
         for (String keyword : availableKeywords) {
-            Pattern pattern = Pattern.compile("(?<!(kein.{0,2}|ohne)\\s)\\b" + keyword.toLowerCase());
+            Pattern pattern = Pattern.compile(NEGATE_PATTERN + keyword.toLowerCase());
             if (pattern.matcher(preparedTarget).find()) {
                 foundKeywords.add(keyword);
             }
