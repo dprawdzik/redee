@@ -24,7 +24,9 @@ public class StanfordInformationExtractorTest {
     @Test
     @Ignore
     public void extract() throws Exception {
-        List<Extraction> extractions = analyser.extract("Besichtigungstermin am Montag und am Donnerstag um 15:00 Uhr!");
+        List<Extraction> extractions = analyser.extract("the first day Peter Sellers war ein toller Künstler. " +
+                "Besichtigungstermin am Montag 14.01.2017 und Weihnachten " +
+                "um 15:00 Uhr!");
         for (Extraction extraction : extractions) {
             System.out.println(extraction);
         }
