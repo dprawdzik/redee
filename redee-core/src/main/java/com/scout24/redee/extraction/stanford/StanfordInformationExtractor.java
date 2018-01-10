@@ -77,34 +77,66 @@ public class StanfordInformationExtractor implements InformationExtractor<DateEx
     }
 
     private DateExtraction createExtraction(SequenceMatchResult<CoreMap> group) throws ParseException {
-        String dayStr = group.group("$day");
-        String monthStr = group.group("$month");
-        String yearStr = group.group("$year");
 
         String dateStr = group.group("$date");
-        dateStr = dateStr.replaceAll("[:-_,;]", ".");
-        String[] dateSplit = dateStr.split("\\.");
-        if(dateSplit[2].length() <= 2)
-            dateStr = dateSplit[0] + "." + dateSplit[1] + ".20" + dateSplit[2];
+        // normalizes the date: e.g. 01.01.2018 and not 01-01-18
+        dateStr = normalizeYear(dateStr);
 
         // starting time stamp
-        String timeStartStr = group.group("$timeStart");
-        if(org.apache.commons.lang3.StringUtils.isNotBlank(timeStartStr)) {
-            timeStartStr = timeStartStr.replaceAll("[-_,;.]", ":");
-            dateStr = dateStr + " " + timeStartStr;
-        }
-        Date start = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.GERMAN).parse(dateStr);
+        String timeTag = "$timeStart";
+        Date start = createDate(group, dateStr, timeTag);
 
         // ending time stamp
+        timeTag = "$timeEnd";
+        String timeStr = group.group(timeTag);
         Date end = null;
-        String timeEndStr = group.group("$timeEnd");
+        if(org.apache.commons.lang3.StringUtils.isNotBlank(timeStr))
+            end = createDate(group, dateStr, timeTag);
 
-        if(org.apache.commons.lang3.StringUtils.isNotBlank(timeEndStr)) {
-            timeEndStr = timeEndStr.replace("[-_,;.]", ":");
-            dateStr = dateStr + " " + timeEndStr;
-            end = new SimpleDateFormat("dd.mm.yyyy HH:mm", Locale.GERMAN).parse(dateStr);
-        }
         return new DateExtraction(start, end, group.group(0), "", Position.createEmptyPosition());
+    }
+
+    private Date createDate(SequenceMatchResult<CoreMap> group, String dateStr, String timeTag) throws ParseException {
+        String timeStr = group.group(timeTag);
+        if(org.apache.commons.lang3.StringUtils.isBlank(timeStr) ) {
+            return new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN).parse(dateStr);
+
+        } else if(timeStr.length() == 5) {
+            timeStr = timeStr.replaceAll("[-_,;.]", ":");
+            return new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.GERMAN).parse(dateStr + " " + timeStr);
+
+        } else
+            return new SimpleDateFormat("dd.MM.yyyy HH", Locale.GERMAN).parse(dateStr + " " + timeStr);
+
+
+    }
+
+    String normalizeYear(String dateStr) {
+        dateStr = dateStr.replaceAll("[:-_,;]", ".");
+        String[] dateSplit = dateStr.split("\\.");
+
+        // is it a date like day month and year?
+        if(dateSplit.length > 2 && dateSplit[2].length() == 2)
+            dateSplit[2] = "20" + dateSplit[2];
+        else
+            dateSplit = extendArraySize(dateSplit, Calendar.getInstance().get(Calendar.YEAR));
+
+        for (int i = 0; i < 2; i++) {
+            if(dateSplit[i].length() == 1)
+                dateSplit[i] =  "0" + dateSplit[i];
+        }
+
+        // create the final and normalized date string.
+        dateStr = String.format("%s.%s.%s", dateSplit[0], dateSplit[1], dateSplit[2]);
+        return dateStr;
+    }
+
+    private static String[] extendArraySize(String[] array, int value){
+        String [] temp = array.clone();
+        array = new String[array.length + 1];
+        System.arraycopy(temp, 0, array, 0, temp.length);
+        array[array.length - 1] = String.valueOf(value);
+        return array;
     }
 
 }
