@@ -40,11 +40,28 @@ public class StanfordInformationExtractor implements InformationExtractor<DateEx
         Env env = TokenSequencePattern.getNewEnv();
         env.setDefaultStringMatchFlags(NodePattern.CASE_INSENSITIVE);
         // Macros!
+        String separator = "[\\.:,;-]";
+        String hourPatter = "Uhr|UHR|uhr|h";
+
+        String timePattern = String.format("(?%s /\\d+%s{0,1}\\d{0,2}/)", "%s", separator);
+        String timeStartPattern = String.format(timePattern, "$timeStart");
+        String timeEndPattern = String.format(timePattern, "$timeEnd");
         env.bind("$DAY", "/[Mm]ontag|[Dd]ienstag|[Mm]ittwoch|[Dd]onnerstag|[Ff]reitag|[Ssamstag]|[Ss]onntag/");
         env.bind("$MONTH", "/[Jj]anuar|[Ff]ebruar|[Mm]ärz|[Aa]pril|[Mm]ai|[Jj]uli/");
-        env.bind("$SEPARATOR", "\\.");
-        env.bind("$DATEA", "(?$date /\\d+[\\.:,;-]\\d+[\\.:,;-]20\\d+/)");
-        //:|,|;|-|
+        env.bind("$SPRTR", separator);
+        env.bind("$SPRTR_ESCPD", "/[\\.:,;-]/");
+        env.bind("$OCLOCK", hourPatter);
+        env.bind("$TIME_START", timeStartPattern);
+        env.bind("$TIME_END", timeEndPattern);
+
+        String simpleTimePattern = String.format("\\d+%s{0,1}\\d{0,2}", separator);
+        env.bind("$TIME", simpleTimePattern);
+        String timeRange = "/" + simpleTimePattern + "-" + simpleTimePattern + "/";
+        // \d+[\.:,;-]{0,1}\d{0,2}\-\d+[\.:,;-]{0,1}\d{0,2}
+        // 06.01.18 14:00-14:30 Uhr
+        env.bind("$TIME_RANGE", timeRange);
+        env.bind("$DATE", "(?$date /\\d{1,2}[\\.:,;-]\\d{1,2}[\\.:,;-]20\\d{2}/)");
+        env.bind("$DATE_SHORT", "(?$date /\\d{1,2}"+ separator + "\\d{1,2}"+separator+"\\d{2}/)");
 
         for (String string : strings) {
             TokenSequencePattern pattern = TokenSequencePattern.compile(env, string);
@@ -57,11 +74,7 @@ public class StanfordInformationExtractor implements InformationExtractor<DateEx
 
         Annotation annotations = pipeline.process(content);
         Collection<DateExtraction> chunks = new HashSet<>();
-
-        // for (CoreMap sentence : annotations.get(CoreAnnotations.SentencesAnnotation.class)) {
-        // List<CoreLabel> tokens = sentence.get(CoreAnnotations.TokensAnnotation.class);
         List<CoreLabel> tokens = annotations.get(CoreAnnotations.TokensAnnotation.class);
-
         List<SequenceMatchResult<CoreMap>> nonOverlapping = multiMatcher.findNonOverlapping(tokens);
         System.out.println("Analysing sentence: '" + annotations.get(CoreAnnotations.TextAnnotation.class) + "'");
 
@@ -98,9 +111,11 @@ public class StanfordInformationExtractor implements InformationExtractor<DateEx
 
     private Date createDate(SequenceMatchResult<CoreMap> group, String dateStr, String timeTag) throws ParseException {
         String timeStr = group.group(timeTag);
+        if(org.apache.commons.lang3.StringUtils.isNotBlank(timeStr) && timeStr.startsWith("-"))
+            timeStr = timeStr.substring(1, timeStr.length());
+
         if(org.apache.commons.lang3.StringUtils.isBlank(timeStr) ) {
             return new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN).parse(dateStr);
-
         } else if(timeStr.length() == 5) {
             timeStr = timeStr.replaceAll("[-_,;.]", ":");
             return new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.GERMAN).parse(dateStr + " " + timeStr);

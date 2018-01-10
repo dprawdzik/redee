@@ -1,3 +1,12 @@
-(?$date /\d{1,2}[\.:,;-]\d{1,2}/) /[\.:,;-]/ um (?$timeStart /\d{2}[\.:,;-]{0,1}\d{0,2}/) /Uhr|UHR|uhr/
-(?$date /\d{1,2}[\.:,;-]\d{1,2}[\.:,;-]20\d{2}/) um (?$timeStart /\d+[\.:,;-]{0,1}\d{0,2}/) /Uhr|UHR|uhr/
-(?$date /\d{1,2}[\.:,;-]\d{1,2}[\.:,;-]\d{2}/) um (?$timeStart /\d+[\.:,;-]{0,1}\d{0,2}/) /Uhr|UHR|uhr/
+$DATE_SHORT $TIME_START (?$timeEnd /-\d+[\.:,;-]${0,1}\d{0,2}/) $OCLOCK
+// short dates only day and month dd:MM
+(?$date /\d{1,2}[\.:,;-]\d{1,2}/) $SPRTR_ESCPD{0,1} um (?$timeStart /\d{2}[\.:,;-]{0,1}\d{0,2}/) $OCLOCK
+$DATE /um|,|UM|-|\// $TIME_START $OCLOCK
+$DATE_SHORT /um|,|UM|-|\// $TIME_START $OCLOCK
+// from till! "Besichtigung am 12.01.18 von 13-14 Uhr"
+$DATE_SHORT von $TIME_START /bis|-/ $TIME_END $OCLOCK
+$DATE von $TIME_START /bis|-/ $TIME_END $OCLOCK
+$DATE_SHORT von $TIME_RANGE
+$DATE von $TIME_RANGE
+$DATE_SHORT $TIME_RANGE
+$DATE $TIME_RANGE

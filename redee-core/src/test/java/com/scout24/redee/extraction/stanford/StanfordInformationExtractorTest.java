@@ -37,6 +37,63 @@ public class StanfordInformationExtractorTest {
         Date expected = sdf.parse(dateInString);
         TestCase.assertEquals(expected, extractions.iterator().next().getStart());
 
+        content = "BES: FREITAG um 18UHR! *Wunderschöne frisch renov Whg in san Altbau*Dielen*Stuck*EBK*Balkon*";
+
+        // time ranges
+        content = "Besichtigung am 06.01.18 14:00-14:30 Uhr 2-Zimmer-Wohnung in Schmargendorf (Wilmersdorf), Berlin";
+        extractions = analyser.extract(content);
+        TestCase.assertEquals(1, extractions.size());
+        TestCase.assertEquals(sdf.parse("06.01.2018 14:00"), extractions.iterator().next().getStart());
+        TestCase.assertEquals(sdf.parse("06.01.2018 14:30"), extractions.iterator().next().getEnd());
+
+        content = "Super Zustand!! Ruhige 3 Zimmer Wohnung im Berlin Mitte - Besichtigungstermin 09.01.2018 19.00-19.30";
+        content = "Süße, ruhige Erdgeschosswohnung im Prenzlauer Berg! Besichtigung 9.1. von 16.30-17.30!";
+
+        content = "Sanierte Altbauwohnung in Friedenau - Offene Besichtigung am 12.01.18 von 13 bis 14 Uhr";
+        extractions = analyser.extract(content);
+        TestCase.assertEquals(1, extractions.size());
+        TestCase.assertEquals(sdf.parse("12.01.2018 13:00"), extractions.iterator().next().getStart());
+        TestCase.assertEquals(sdf.parse("12.01.2018 14:00"), extractions.iterator().next().getEnd());
+        content = "Sanierte Altbauwohnung in Friedenau - Offene Besichtigung am 12.01.18 von 13 - 14 Uhr";
+        extractions = analyser.extract(content);
+        TestCase.assertEquals(1, extractions.size());
+        TestCase.assertEquals(sdf.parse("12.01.2018 13:00"), extractions.iterator().next().getStart());
+        TestCase.assertEquals(sdf.parse("12.01.2018 14:00"), extractions.iterator().next().getEnd());
+
+        // no dot
+        content = "SONNTAGSBESICHTIGUNG: 14.01 um 13 Uhr! RENOVIERTE WG-geeignete 3-Zimmer-Whg! CLICK HERE FOR ENGLISH!";
+        content = "BESICHTIGUNG: Mittwoch den 10.01 um 17:30 Uhr! Einmalige Drei Zimmer Wohnung! Ab Sofort!";
+        extractions = analyser.extract(content);
+        TestCase.assertEquals(1, extractions.size());
+        dateInString = "10.01.2018 17:30";
+        expected = sdf.parse(dateInString);
+        TestCase.assertEquals(expected, extractions.iterator().next().getStart());
+
+        // comma & hyphen
+        content = "KORDES IMMOBILIEN: Öffentliche Besichtigung 16.01.2018, 16.00 Uhr";
+        extractions = analyser.extract(content);
+        TestCase.assertEquals(1, extractions.size());
+        TestCase.assertEquals(sdf.parse("16.01.2018 16:00"), extractions.iterator().next().getStart());
+
+        content = "Sonniges Reihenhaus über 5 Etagen, max. 5 Personen,Besichtigung-Samstag, 13.1.17, 13 Uhr";
+        extractions = analyser.extract(content);
+        TestCase.assertEquals(1, extractions.size());
+        TestCase.assertEquals(sdf.parse("13.01.2017 13:00"), extractions.iterator().next().getStart());
+
+        content = "***VENERDI - RUHIGE 2 ZIMMERWOHNUNG MITTEN IN PRENZLBERG. BESICHTIGUNG: 11.01.2018 - 18.00 UHR***";
+        extractions = analyser.extract(content);
+        TestCase.assertEquals(1, extractions.size());
+        TestCase.assertEquals(sdf.parse("11.01.2018 18:00"), extractions.iterator().next().getStart());
+
+        content = "BESICHTIGUNG 15.01. / 12:00 Uhr **********  schicke 2 Zimmerwohnung mit EBK, Balkon, mod.Bad";
+        content = "Erstbezug nach Sanierung, sehr hochwertig möblierte 2 Zi. Whg.- Besichtigung 30.12.17, ab 12h";
+
+        content = "Sanierte-1,5-Zimmer- Wohnung im Wedding.Besichtigung am 11.1. um 9.00 Uhr";
+        // 4. OG, Badewanne, Parkett, EBK - Besichtigungstermin: Samstag, den 13.01./10 Uhr...Prenzl`Berg
+        // Besichtigung am 13.1. um 13:30 h: Helle und ruhige Dachgeschoss-Wohnung in Pankow-Wilhelmsruh
+        content = "Besichtigung 13.1. um 11 h: Zauberhafte ruhige 2-Zi.-Whg. im Südwesten Berlins im ruhigen Mariendorf";
+        content = "Dachgeschoss im Erstbezug - Besichtigung 12.Jan. 16 Uhr";
+
         content = "am 8.1. um 16 Uhr";
         extractions = analyser.extract(content);
         TestCase.assertEquals(1, extractions.size());
