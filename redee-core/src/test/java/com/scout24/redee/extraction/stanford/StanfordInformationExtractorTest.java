@@ -27,15 +27,32 @@ public class StanfordInformationExtractorTest {
     }
 
     @Test
+    public void extractDatesSpecial() throws Exception {
+
+        String content = "Super Zustand!! Ruhige 3 Zimmer Wohnung im Berlin Mitte - Besichtigungstermin 09.01.2018 19.00-19.30";
+        Collection<DateExtraction> extractions = analyser.extract(content);
+        TestCase.assertEquals(1, extractions.size());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        TestCase.assertEquals(sdf.parse("09.01.2018 19:00"), extractions.iterator().next().getStart());
+        TestCase.assertEquals(sdf.parse("09.01.2018 19:30"), extractions.iterator().next().getEnd());
+    }
+
+    @Test
     public void extractDates() throws Exception {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         String content = "Besichtigung am Samstag, den 06.01. um 13:00 Uhr";
         Collection<DateExtraction> extractions = analyser.extract(content);
         TestCase.assertEquals(1, extractions.size());
         String dateInString = "06.01.2018 13:00";
         Date expected = sdf.parse(dateInString);
         TestCase.assertEquals(expected, extractions.iterator().next().getStart());
+
+        content = "Super Zustand!! Ruhige 3 Zimmer Wohnung im Berlin Mitte - Besichtigungstermin 09.01.2018 19.00-19.30";
+        extractions = analyser.extract(content);
+        TestCase.assertEquals(1, extractions.size());
+        TestCase.assertEquals(sdf.parse("09.01.2018 19:00"), extractions.iterator().next().getStart());
+        TestCase.assertEquals(sdf.parse("09.01.2018 19:30"), extractions.iterator().next().getEnd());
 
         content = "BES: FREITAG um 18UHR! *Wunderschöne frisch renov Whg in san Altbau*Dielen*Stuck*EBK*Balkon*";
 
@@ -47,14 +64,24 @@ public class StanfordInformationExtractorTest {
         TestCase.assertEquals(sdf.parse("06.01.2018 14:30"), extractions.iterator().next().getEnd());
 
         content = "Super Zustand!! Ruhige 3 Zimmer Wohnung im Berlin Mitte - Besichtigungstermin 09.01.2018 19.00-19.30";
+        extractions = analyser.extract(content);
+        TestCase.assertEquals(1, extractions.size());
+        TestCase.assertEquals(sdf.parse("09.01.2018 19:00"), extractions.iterator().next().getStart());
+        TestCase.assertEquals(sdf.parse("09.01.2018 19:30"), extractions.iterator().next().getEnd());
+
         content = "Süße, ruhige Erdgeschosswohnung im Prenzlauer Berg! Besichtigung 9.1. von 16.30-17.30!";
+        extractions = analyser.extract(content);
+        TestCase.assertEquals(1, extractions.size());
+        TestCase.assertEquals(sdf.parse("09.01.2018 16:30"), extractions.iterator().next().getStart());
+        TestCase.assertEquals(sdf.parse("09.01.2018 17:30"), extractions.iterator().next().getEnd());
 
         content = "Sanierte Altbauwohnung in Friedenau - Offene Besichtigung am 12.01.18 von 13 bis 14 Uhr";
         extractions = analyser.extract(content);
         TestCase.assertEquals(1, extractions.size());
         TestCase.assertEquals(sdf.parse("12.01.2018 13:00"), extractions.iterator().next().getStart());
         TestCase.assertEquals(sdf.parse("12.01.2018 14:00"), extractions.iterator().next().getEnd());
-        content = "Sanierte Altbauwohnung in Friedenau - Offene Besichtigung am 12.01.18 von 13 - 14 Uhr";
+
+        content = "Sanierte Altbauwohnung in Friedenau - Offene Besichtigung am 12.01.18 von 13-14 Uhr";
         extractions = analyser.extract(content);
         TestCase.assertEquals(1, extractions.size());
         TestCase.assertEquals(sdf.parse("12.01.2018 13:00"), extractions.iterator().next().getStart());
@@ -86,7 +113,14 @@ public class StanfordInformationExtractorTest {
         TestCase.assertEquals(sdf.parse("11.01.2018 18:00"), extractions.iterator().next().getStart());
 
         content = "BESICHTIGUNG 15.01. / 12:00 Uhr **********  schicke 2 Zimmerwohnung mit EBK, Balkon, mod.Bad";
+        extractions = analyser.extract(content);
+        TestCase.assertEquals(1, extractions.size());
+        TestCase.assertEquals(sdf.parse("15.01.2018 12:00"), extractions.iterator().next().getStart());
+
         content = "Erstbezug nach Sanierung, sehr hochwertig möblierte 2 Zi. Whg.- Besichtigung 30.12.17, ab 12h";
+        extractions = analyser.extract(content);
+        TestCase.assertEquals(1, extractions.size());
+        TestCase.assertEquals(sdf.parse("30.12.2017 12:00"), extractions.iterator().next().getStart());
 
         content = "Sanierte-1,5-Zimmer- Wohnung im Wedding.Besichtigung am 11.1. um 9.00 Uhr";
         // 4. OG, Badewanne, Parkett, EBK - Besichtigungstermin: Samstag, den 13.01./10 Uhr...Prenzl`Berg

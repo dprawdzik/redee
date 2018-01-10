@@ -1,8 +1,11 @@
 package com.scout24.redee.extraction.stanford;
 
 import com.scout24.redee.exception.ResourceException;
-import com.scout24.redee.extraction.*;
+import com.scout24.redee.extraction.DateExtraction;
+import com.scout24.redee.extraction.InformationExtractor;
+import com.scout24.redee.extraction.Position;
 import com.scout24.redee.utils.NameResolver;
+import com.scout24.utils.Utils;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.tokensregex.*;
@@ -11,11 +14,9 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
 import edu.stanford.nlp.util.StringUtils;
 import org.apache.commons.io.FileUtils;
-import com.scout24.utils.Utils;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -41,25 +42,30 @@ public class StanfordInformationExtractor implements InformationExtractor<DateEx
         env.setDefaultStringMatchFlags(NodePattern.CASE_INSENSITIVE);
         // Macros!
         String separator = "[\\.:,;-]";
-        String hourPatter = "Uhr|UHR|uhr|h";
+        String hourPattern = "Uhr|UHR|uhr|h";
+        String timePattern = String.format("(?%s /\\d+%s{0,1}\\d{0,2}%s/)", "%s", separator, "%s");
+        String timeStartPattern = String.format(timePattern, "$timeStart", "");
+        String timeEndPattern = String.format(timePattern, "$timeEnd", "");
+        String timeStartNoSpace = String.format(timePattern, "$timeStart", "h");
 
-        String timePattern = String.format("(?%s /\\d+%s{0,1}\\d{0,2}/)", "%s", separator);
-        String timeStartPattern = String.format(timePattern, "$timeStart");
-        String timeEndPattern = String.format(timePattern, "$timeEnd");
         env.bind("$DAY", "/[Mm]ontag|[Dd]ienstag|[Mm]ittwoch|[Dd]onnerstag|[Ff]reitag|[Ssamstag]|[Ss]onntag/");
         env.bind("$MONTH", "/[Jj]anuar|[Ff]ebruar|[Mm]ärz|[Aa]pril|[Mm]ai|[Jj]uli/");
         env.bind("$SPRTR", separator);
         env.bind("$SPRTR_ESCPD", "/[\\.:,;-]/");
-        env.bind("$OCLOCK", hourPatter);
+        env.bind("$OCLOCK", hourPattern);
         env.bind("$TIME_START", timeStartPattern);
+        env.bind("$TIME_START_NO_SPACE", timeStartNoSpace);
         env.bind("$TIME_END", timeEndPattern);
+        env.bind("$TIME_INFIX", "/um|,|UM|-|\\/||ab/");
 
         String simpleTimePattern = String.format("\\d+%s{0,1}\\d{0,2}", separator);
         env.bind("$TIME", simpleTimePattern);
-        String timeRange = "/" + simpleTimePattern + "-" + simpleTimePattern + "/";
+        String timeRange = "(?$timeRange /" + simpleTimePattern + "-" + simpleTimePattern + "/)";
+        String timeRangeB = "(?$timeRange /" + simpleTimePattern + "-" + simpleTimePattern + "/  /\\.\\d{0,2}/)";
         // \d+[\.:,;-]{0,1}\d{0,2}\-\d+[\.:,;-]{0,1}\d{0,2}
         // 06.01.18 14:00-14:30 Uhr
-        env.bind("$TIME_RANGE", timeRange);
+        env.bind("$TIME_RANGE_A", timeRange);
+        env.bind("$TIME_RANGE_B", timeRangeB);
         env.bind("$DATE", "(?$date /\\d{1,2}[\\.:,;-]\\d{1,2}[\\.:,;-]20\\d{2}/)");
         env.bind("$DATE_SHORT", "(?$date /\\d{1,2}"+ separator + "\\d{1,2}"+separator+"\\d{2}/)");
 
@@ -96,21 +102,39 @@ public class StanfordInformationExtractor implements InformationExtractor<DateEx
         dateStr = normalizeYear(dateStr);
 
         // starting time stamp
-        String timeTag = "$timeStart";
-        Date start = createDate(group, dateStr, timeTag);
+        Date start = createStartDate(group, dateStr);
 
         // ending time stamp
-        timeTag = "$timeEnd";
-        String timeStr = group.group(timeTag);
-        Date end = null;
-        if(org.apache.commons.lang3.StringUtils.isNotBlank(timeStr))
-            end = createDate(group, dateStr, timeTag);
+        Date end = createEndDate(group, dateStr);
 
         return new DateExtraction(start, end, group.group(0), "", Position.createEmptyPosition());
     }
 
-    private Date createDate(SequenceMatchResult<CoreMap> group, String dateStr, String timeTag) throws ParseException {
-        String timeStr = group.group(timeTag);
+    private Date createStartDate(SequenceMatchResult<CoreMap> group, String dateStr) throws ParseException {
+
+        String timeStr = group.group("$timeStart");
+        String timeRange = group.group("$timeRange");
+        if(org.apache.commons.lang3.StringUtils.isNotBlank(timeRange))
+            timeStr = timeRange.split("-")[0];
+
+        return createDate(group, dateStr, timeStr);
+    }
+
+    private Date createEndDate(SequenceMatchResult<CoreMap> group, String dateStr) throws ParseException {
+
+        String timeStr = group.group("$timeEnd");
+
+        String timeRange = group.group("$timeRange");
+        if(org.apache.commons.lang3.StringUtils.isNotBlank(timeRange))
+            timeStr = timeRange.split("-")[1];
+
+        if(org.apache.commons.lang3.StringUtils.isBlank(timeStr))
+            return null;
+        return createDate(group, dateStr, timeStr);
+    }
+
+    private Date createDate(SequenceMatchResult<CoreMap> group, String dateStr, String timeStr) throws ParseException {
+
         if(org.apache.commons.lang3.StringUtils.isNotBlank(timeStr) && timeStr.startsWith("-"))
             timeStr = timeStr.substring(1, timeStr.length());
 
@@ -119,11 +143,8 @@ public class StanfordInformationExtractor implements InformationExtractor<DateEx
         } else if(timeStr.length() == 5) {
             timeStr = timeStr.replaceAll("[-_,;.]", ":");
             return new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.GERMAN).parse(dateStr + " " + timeStr);
-
         } else
             return new SimpleDateFormat("dd.MM.yyyy HH", Locale.GERMAN).parse(dateStr + " " + timeStr);
-
-
     }
 
     String normalizeYear(String dateStr) {

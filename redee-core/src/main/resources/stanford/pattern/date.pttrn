@@ -1,12 +1,17 @@
+$DATE_SHORT $TIME_RANGE_A
+$DATE $TIME_RANGE_A
+$DATE $TIME_RANGE_B
+$DATE_SHORT von $TIME_RANGE_A
+$DATE von $TIME_RANGE_A
+$DATE_SHORT von $TIME_RANGE_B
+(?$date /\d{1,2}[\.:,;-]\d{1,2}/) $SPRTR_ESCPD{0,1} von $TIME_RANGE_B
 $DATE_SHORT $TIME_START (?$timeEnd /-\d+[\.:,;-]${0,1}\d{0,2}/) $OCLOCK
 // short dates only day and month dd:MM
-(?$date /\d{1,2}[\.:,;-]\d{1,2}/) $SPRTR_ESCPD{0,1} um (?$timeStart /\d{2}[\.:,;-]{0,1}\d{0,2}/) $OCLOCK
-$DATE /um|,|UM|-|\// $TIME_START $OCLOCK
-$DATE_SHORT /um|,|UM|-|\// $TIME_START $OCLOCK
+(?$date /\d{1,2}[\.:,;-]\d{1,2}/) $SPRTR_ESCPD{0,1} /um|,|UM|-|\// (?$timeStart /\d{2}[\.:,;-]{0,1}\d{0,2}/) $OCLOCK
+$DATE $TIME_INFIX $TIME_START $OCLOCK
+$DATE_SHORT $TIME_INFIX{1,2} $TIME_START $OCLOCK
+$DATE_SHORT $TIME_INFIX{1,2} $TIME_START_NO_SPACE
+$DATE_SHORT $TIME_INFIX{1,2} $TIME_START_NO_SPACE
 // from till! "Besichtigung am 12.01.18 von 13-14 Uhr"
 $DATE_SHORT von $TIME_START /bis|-/ $TIME_END $OCLOCK
 $DATE von $TIME_START /bis|-/ $TIME_END $OCLOCK
-$DATE_SHORT von $TIME_RANGE
-$DATE von $TIME_RANGE
-$DATE_SHORT $TIME_RANGE
-$DATE $TIME_RANGE
