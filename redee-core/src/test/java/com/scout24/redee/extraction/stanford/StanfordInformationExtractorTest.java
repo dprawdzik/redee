@@ -1,7 +1,6 @@
 package com.scout24.redee.extraction.stanford;
 
 import com.scout24.redee.extraction.DateExtraction;
-import com.scout24.redee.extraction.Extraction;
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -10,9 +9,6 @@ import org.junit.Test;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by dprawdzik on 08.01.18.
@@ -23,7 +19,7 @@ public class StanfordInformationExtractorTest {
 
     @Before
     public void setUp() throws Exception {
-        this.analyser = new StanfordInformationExtractor();
+        this.analyser = new StanfordInformationExtractor("stanford/pattern/date.pttrn");
     }
 
     @Test
@@ -55,7 +51,9 @@ public class StanfordInformationExtractorTest {
         TestCase.assertEquals(sdf.parse("09.01.2018 19:30"), extractions.iterator().next().getEnd());
 
         content = "BES: FREITAG um 18UHR! *Wunderschöne frisch renov Whg in san Altbau*Dielen*Stuck*EBK*Balkon*";
-
+        content = "Sanierte-1,5-Zimmer- Wohnung im Wedding.Besichtigung am 11.1. um 9.00 Uhr";
+content = "Dachgeschoss im Erstbezug - Besichtigung 12.Jan. 16 Uhr";
+        content = "* bezugsfreie, sanierte Einraumwohnung in Lankwitz * Besichtigung am 02.01.2018";
         // time ranges
         content = "Besichtigung am 06.01.18 14:00-14:30 Uhr 2-Zimmer-Wohnung in Schmargendorf (Wilmersdorf), Berlin";
         extractions = analyser.extract(content);

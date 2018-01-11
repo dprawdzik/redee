@@ -27,17 +27,22 @@ import java.util.*;
  */
 public class StanfordInformationExtractor implements InformationExtractor<DateExtraction> {
 
-    private final MultiPatternMatcher<CoreMap> multiMatcher;
+    private MultiPatternMatcher<CoreMap> multiMatcher;
     private StanfordCoreNLP pipeline;
 
-    public StanfordInformationExtractor() throws IOException, ResourceException {
+    public StanfordInformationExtractor(String patternFile) throws IOException, ResourceException {
+
+        URL url = NameResolver.resolve(patternFile);
+        List<String> strings = FileUtils.readLines(Utils.urlToFile(url), "UTF-8");
+        initialize(strings);
+    }
+
+    public void initialize(List<String> strings) throws IOException, ResourceException {
 
         Properties properties = StringUtils.argsToProperties(
                 new String[]{"-props", "stanford/StanfordCoreNlpDe.properties"});
         pipeline = new StanfordCoreNLP(properties);
-        URL url = NameResolver.resolve("stanford/pattern/date.pttrn");
-        List<String> strings = FileUtils.readLines(Utils.urlToFile(url), "UTF-8");
-        Collection<TokenSequencePattern> patterns = new ArrayList<>();
+
         Env env = TokenSequencePattern.getNewEnv();
         env.setDefaultStringMatchFlags(NodePattern.CASE_INSENSITIVE);
         // Macros!
@@ -69,6 +74,7 @@ public class StanfordInformationExtractor implements InformationExtractor<DateEx
         env.bind("$DATE", "(?$date /\\d{1,2}[\\.:,;-]\\d{1,2}[\\.:,;-]20\\d{2}/)");
         env.bind("$DATE_SHORT", "(?$date /\\d{1,2}"+ separator + "\\d{1,2}"+separator+"\\d{2}/)");
 
+        List<TokenSequencePattern> patterns = new ArrayList<>();
         for (String string : strings) {
             TokenSequencePattern pattern = TokenSequencePattern.compile(env, string);
             patterns.add(pattern);
@@ -82,7 +88,7 @@ public class StanfordInformationExtractor implements InformationExtractor<DateEx
         Collection<DateExtraction> chunks = new HashSet<>();
         List<CoreLabel> tokens = annotations.get(CoreAnnotations.TokensAnnotation.class);
         List<SequenceMatchResult<CoreMap>> nonOverlapping = multiMatcher.findNonOverlapping(tokens);
-        System.out.println("Analysing sentence: '" + annotations.get(CoreAnnotations.TextAnnotation.class) + "'");
+        System.out.println("Analysing content: '" + annotations.get(CoreAnnotations.TextAnnotation.class) + "'");
 
         for (SequenceMatchResult<CoreMap> match : nonOverlapping) {
 
