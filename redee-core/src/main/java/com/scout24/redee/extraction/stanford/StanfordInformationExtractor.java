@@ -37,6 +37,10 @@ public class StanfordInformationExtractor implements InformationExtractor<DateEx
         initialize(strings);
     }
 
+    public StanfordInformationExtractor() {
+
+    }
+
     public void initialize(List<String> strings) throws IOException, ResourceException {
 
         Properties properties = StringUtils.argsToProperties(
