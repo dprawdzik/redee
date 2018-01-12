@@ -52,7 +52,7 @@ public class StanfordInformationExtractorTest {
 
         content = "BES: FREITAG um 18UHR! *Wunderschöne frisch renov Whg in san Altbau*Dielen*Stuck*EBK*Balkon*";
         content = "Sanierte-1,5-Zimmer- Wohnung im Wedding.Besichtigung am 11.1. um 9.00 Uhr";
-content = "Dachgeschoss im Erstbezug - Besichtigung 12.Jan. 16 Uhr";
+        content = "Dachgeschoss im Erstbezug - Besichtigung 12.Jan. 16 Uhr";
         content = "* bezugsfreie, sanierte Einraumwohnung in Lankwitz * Besichtigung am 02.01.2018";
         // time ranges
         content = "Besichtigung am 06.01.18 14:00-14:30 Uhr 2-Zimmer-Wohnung in Schmargendorf (Wilmersdorf), Berlin";
@@ -60,6 +60,11 @@ content = "Dachgeschoss im Erstbezug - Besichtigung 12.Jan. 16 Uhr";
         TestCase.assertEquals(1, extractions.size());
         TestCase.assertEquals(sdf.parse("06.01.2018 14:00"), extractions.iterator().next().getStart());
         TestCase.assertEquals(sdf.parse("06.01.2018 14:30"), extractions.iterator().next().getEnd());
+
+        content = "14.01.2018 14.00 Uhr BESICHTIGUNG";
+        extractions = analyser.extract(content);
+        TestCase.assertEquals(1, extractions.size());
+        TestCase.assertEquals(sdf.parse("14.01.2018 14:00"), extractions.iterator().next().getStart());
 
         content = "Super Zustand!! Ruhige 3 Zimmer Wohnung im Berlin Mitte - Besichtigungstermin 09.01.2018 19.00-19.30";
         extractions = analyser.extract(content);
