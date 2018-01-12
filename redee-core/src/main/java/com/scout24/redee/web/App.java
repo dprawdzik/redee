@@ -55,47 +55,39 @@ public class App extends NanoHTTPD {
         Map<String, List<String>> parameters = session.getParameters();
 
         if (!parameters.containsKey(PARAM_METHOD)) {
-            return newFixedLengthResponse(
-                    gson.toJson(
-                            new Error("Provide parameter `" + PARAM_METHOD + "`: `" + PARAM_METHOD_KEYWORDS + "` or `" + PARAM_METHOD_DATES + "`")
-                    )
-            );
+            return newErrorResponse("Provide parameter `" + PARAM_METHOD + "`: `" + PARAM_METHOD_KEYWORDS + "` or `" + PARAM_METHOD_DATES + "`");
         }
 
         final String method = parameters.get(PARAM_METHOD).get(0);
 
         if (!parameters.containsKey(PARAM_TARGET)) {
-            return newFixedLengthResponse(
-                    gson.toJson(
-                            new Error("Provide parameter `" + PARAM_TARGET + "` with strings to parse")
-                    )
-            );
+            return newErrorResponse("Provide parameter `" + PARAM_TARGET + "` with strings to parse");
         }
 
         List<String> targets = parameters.get(PARAM_TARGET);
 
         switch (method) {
             case PARAM_METHOD_KEYWORDS:
-                return newFixedLengthResponse(extractKeywords(targets));
+                return extractKeywords(targets);
             case PARAM_METHOD_DATES:
-                return newFixedLengthResponse(extractDates(targets));
+                return extractDates(targets);
             default:
-                return newFixedLengthResponse(gson.toJson(new Error("Unknown method!")));
+                return newErrorResponse("Unknown method!");
         }
     }
 
-    private String extractKeywords(List<String> targets) {
+    private Response extractKeywords(List<String> targets) {
         Set<String> keywords = new HashSet<>();
         for (String target : targets) {
             keywords.addAll(keywordExtractor.findKeywords(target));
         }
 
-        return gson.toJson(keywords.toArray());
+        return newJsonResponse(keywords.toArray());
     }
 
-    private String extractDates(List<String> targets) {
+    private Response extractDates(List<String> targets) {
         if (stanfordInformationExtractor == null) {
-            return gson.toJson(new Error("StanfordInformationExtractor is not initialized!"));
+            return newErrorResponse("StanfordInformationExtractor is not initialized!");
         }
 
         List<DateExtraction> allDateExtractions = new ArrayList<>();
@@ -110,7 +102,15 @@ public class App extends NanoHTTPD {
         }
 
 
-        return gson.toJson(allDateExtractions);
+        return newJsonResponse(allDateExtractions);
+    }
+
+    private Response newJsonResponse(Object object) {
+        return newFixedLengthResponse(Response.Status.OK, "application/json", gson.toJson(object));
+    }
+
+    private Response newErrorResponse(String message) {
+        return newFixedLengthResponse(Response.Status.BAD_REQUEST, "application/json", gson.toJson(new Error(message)));
     }
 
 }
