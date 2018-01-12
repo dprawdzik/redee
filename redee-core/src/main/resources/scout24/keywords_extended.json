@@ -1,0 +1,198 @@
+[
+  {
+    "title": "Stellplatz",
+    "synonyms": [
+      "Garage",
+      "Tiefgarage",
+      "Stellplatz",
+      "Parkanlage",
+      "PkW-Stellplatz"
+    ]
+  },
+  {
+    "title": "Balkon",
+    "synonyms": [
+      "Balkon",
+      "Terrasse",
+      "Südbalkon"
+    ]
+  },
+  {
+    "title": "Garten",
+    "synonyms": [
+      "Garten",
+      "Gartenmitnutzung"
+    ]
+  },
+  {
+    "title": "Aufzug",
+    "synonyms": [
+      "Aufzug",
+      "Personenaufzug"
+    ]
+  },
+  {
+    "title": "Einbauküche",
+    "synonyms": [
+      "Einbauküche"
+    ]
+  },
+  {
+    "title": "Gäste-WC",
+    "synonyms": [
+      "Gäste-WC",
+      "Gäste WC"
+    ]
+  },
+  {
+    "title": "Keller",
+    "synonyms": [
+      "Keller"
+    ]
+  },
+  {
+    "title": "Hobbyraum",
+    "synonyms": [
+      "Hobbyraum"
+    ]
+  },
+  {
+    "title": "U-Bahn",
+    "synonyms": [
+      "U-Bahn",
+      "U-Bahnhof",
+      "U-",
+      "U-Bahnlinie",
+      "U-Bahn-Linien",
+      "U-Bahnanbindung"
+    ]
+  },
+  {
+    "title": "S-Bahn",
+    "synonyms": [
+      "S-Bahn",
+      "S-Bahnhof",
+      "S-",
+      "S-Bahnlinie",
+      "S-Bahn-Linien",
+      "S-Bahnanbindung"
+    ]
+  },
+  {
+    "title": "Bus",
+    "synonyms": [
+      "Bus",
+      "Buslinien",
+      "Busbahnhof",
+      "Buslinie",
+      "Buslinien",
+      "Bus-",
+      "Busstationen",
+      "Busstation",
+      "Busse",
+      "Bussen",
+      "Bushaltestelle"
+    ]
+  },
+  {
+    "title": "Tram",
+    "synonyms": [
+      "Tram",
+      "Tram-",
+      "Tramstation",
+      "Tramstationen",
+      "Tramhaltestelle"
+    ]
+  },
+  {
+    "title": "Fahrradstellplatz",
+    "synonyms": [
+      "Fahrradstellplatz",
+      "Fahrradkeller"
+    ]
+  },
+  {
+    "title": "Grünblick",
+    "synonyms": [
+      "Grünblick"
+    ]
+  },
+  {
+    "title": "Wannenbad",
+    "synonyms": [
+      "Wannenbad",
+      "Wannen-",
+      "Wanne",
+      ""
+    ]
+  },
+  {
+    "title": "Parkett",
+    "synonyms": [
+      "Echtholzparkett",
+      "Massivparkett",
+      "Parkettfußboden",
+      "Parkett"
+    ]
+  },
+  {
+    "title": "Laminat",
+    "synonyms": [
+      "Laminatfußboden",
+      "Laminat"
+    ]
+  },
+  {
+    "title": "Linoleum",
+    "synonyms": [
+      "Linoleum"
+    ]
+  },
+  {
+    "title": "Fußbodenheizung",
+    "synonyms": [
+      "Fußbodenheizung"
+    ]
+  },
+  {
+    "title": "Rollläden",
+    "synonyms": [
+      "Rollläden",
+      "Außenrolläden"
+    ]
+  },
+  {
+    "title": "Duschbad",
+    "synonyms": [
+      "Duschbad",
+      "Gäste-Duschbad",
+      "Dusch-",
+      "Dusche"
+    ]
+  },
+  {
+    "title": "Zentralheizung",
+    "synonyms": [
+      "Zentralheizung"
+    ]
+  },
+  {
+    "title": "Fernheizung",
+    "synonyms": [
+      "Fernheizung"
+    ]
+  },
+  {
+    "title": "Öl-Heizung",
+    "synonyms": [
+      "Öl-Heizung",
+      "Ölheizung"
+    ]
+  },
+  {
+    "title": "Durchlauferhitzer",
+    "synonyms": [
+      "Durchlauferhitzer"
+    ]
+  }
+]

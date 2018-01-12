@@ -27,8 +27,8 @@ public class KeywordsExtractorPlayground {
             }.getType();
             List<Expose> exposes = gson.fromJson(exposesString, listType);
 
-            String keywordsString = new String(Files.readAllBytes(Paths.get(RESOURCES_PATH + "keywords.json")));
-            extractor = new KeywordExtractor(gson.fromJson(keywordsString, String[].class));
+            String keywordsString = new String(Files.readAllBytes(Paths.get(RESOURCES_PATH + "keywords_extended.json")));
+            extractor = new KeywordExtractor(gson.fromJson(keywordsString, KeywordsHolder[].class));
 
             extractKeywords(exposes);
         } catch (IOException e) {
