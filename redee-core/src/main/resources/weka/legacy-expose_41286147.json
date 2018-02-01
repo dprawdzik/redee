@@ -1,0 +1,33 @@
+{
+  "expose.expose": {
+    "realEstate": {
+      "@id": "41286147",
+      "creationDate": "Mar 22, 2017 3:33:47 PM",
+      "lastModificationDate": "Jan 11, 2018 12:24:20 AM",
+      "descriptionNote": "Schönes gepflegtes Mehrfamilienhaus, parkähnliches Grundstück, Hausflur mit Marmorböden",
+      "furnishingNote": "- Fussbodenheizung\r\n- Einbauküche\r\n- Bad mit Badewanne und Dusche \r\n- Gäste-WC\r\n- Balkon/ Terrasse\r\n- Gartennutzung",
+      "locationNote": "Dieses gepflegte Mehrfamilienhaus befindet sich in ruhiger Wohnlage von Berlin-Frohnau nahe Glienicke-Nordbahn; Balkon/ Terrasse und der parkähnliche Garten bieten Ruhe und Entspannung. Die Öffentlichen Verkehrsmittel sind fußläufig erreichbar und trotz der Grünlage ist man schnell in der Innenstadt.",
+      "otherNote": "Die Vermietung erfolgt direkt durch den Eigentümer.\nEine Besichtigung ist nach Absprache möglich.",
+      "apartmentType": "APARTMENT",
+      "lift": false,
+      "assistedLiving": false,
+      "cellar": "YES",
+      "handicappedAccessible": "NOT_APPLICABLE",
+      "condition": "WELL_KEPT",
+      "interiorQuality": "SOPHISTICATED",
+      "constructionYear": 1989,
+      "numberOfBathRooms": 1.0,
+      "numberOfBedRooms": 3.0,
+      "totalRent": 1707.08,
+      "baseRent": 1319.36,
+      "livingSpace": 125.65,
+      "garden": true,
+      "balcony": true,
+      "builtInKitchen": true,
+      "numberOfRooms": 5.0,
+      "useAsFlatshareRoom": "NOT_APPLICABLE",
+      "guestToilet": "YES",
+      "parkingSpaceType": "GARAGE"
+    }
+  }
+}

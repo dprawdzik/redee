@@ -4,6 +4,8 @@ import java.io.StringReader;
 import java.io.IOException;
 import java.util.Iterator;
 import java.lang.NullPointerException;
+import java.util.List;
+import java.util.ArrayList;
 
 import java.lang.UnsupportedOperationException;
 import java.util.NoSuchElementException;
@@ -53,6 +55,26 @@ import com.scout24.redee.extraction.jflex.*;
         this.text = input;
     }
 
+    public List<Token> toList() {
+
+        List<Token> tokens = new ArrayList<>();
+        while(hasNext()) {
+            Token next = next();
+            tokens.add(next);
+        }
+        return tokens;
+    }
+
+       public List<Token> toList(String tokenType) {
+
+            List<Token> tokens = new ArrayList<>();
+            while(hasNext()) {
+                Token next = next();
+                if(next.getType().equals(tokenType))
+                    tokens.add(next);
+            }
+            return tokens;
+        }
 
     /** @return true if the Tokenizer has more elements. */
     public boolean hasNext() {
@@ -135,6 +157,10 @@ MONTH     = ("Januar" | "Februar" | "Mai" | "Juni" | "Juli" | "August" | "Oktobe
         "Jan." | "Feb." | "Aug." | "Okt." | "Sept." | "Nov." | "Dez.")
 
 %%
+
+"Balkon" | "Loggia"	    { Token t = new Token(yytext(), TokenType.BALCONY, yychar, (yylength() + yychar)); return t; }
+[Oo]"hne" | "KEINEN" | "KEIN" | [N|n]"ahezu" | [G|g]"roßteil" | [G|g]"roßenteils" | [K|k]"einen" | [K|k]"ein" | [k|K]"einer" | [N|n]"icht" | "k e i n"	| "k e i n e n"    { Token t = new Token(yytext(), TokenType.NEGATION, yychar, (yylength() + yychar)); return t; }
+
 
 /* "I.B.M." */
 {DIGIT}{2}"."{DIGIT}{2}".20"{DIGIT}{2}" um "{DIGIT}{2}":"{DIGIT}{2}" Uhr"	{ Token t = new Token(yytext(), TokenType.APPOINTMENT, yychar, (yylength() + yychar)); return t; }

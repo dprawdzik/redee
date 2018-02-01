@@ -15,12 +15,11 @@ import java.util.*;
 
 public class App extends NanoHTTPD {
 
-    private static final String PARAM_METHOD = "method";
+   private static final String PARAM_METHOD = "method";
     private static final String PARAM_TARGET = "target";
 
     private static final String PARAM_METHOD_KEYWORDS = "keywords";
     private static final String PARAM_METHOD_DATES = "dates";
-
 
     Gson gson = new Gson();
     private KeywordExtractor keywordExtractor;

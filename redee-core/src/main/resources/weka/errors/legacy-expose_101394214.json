@@ -1,0 +1,32 @@
+{
+  "expose.expose": {
+    "realEstate": {
+      "@id": "101394214",
+      "creationDate": "Dec 4, 2017 1:08:59 PM",
+      "lastModificationDate": "Jan 9, 2018 2:33:01 PM",
+      "descriptionNote": "Bei dieser ansprechenden Immobilie handelt es sich um einen Erstbezug in eine Wohnung im zweiten OG, die durch eine luxuriöse Innenausstattung besticht und ab sofort bezogen werden kann. Zu der Wohnung zählen zwei schöne Zimmer. Die Immobilie ist bequem über einen Fahrstuhl zu erreichen. Besonders hervorzuheben ist, dass es nicht nur einen Balkon gibt, sondern Sie sich auch im Garten am Haus aufhalten können. Eine Einbauküche sowie ein Stellplatz für Ihr Auto und ein Kellerraum stehen Ihnen außerdem zur Verfügung.\nDie Wohnung ist komplett und sehr hochwertig möbliert und kann ab sofort bezogen werden.",
+      "furnishingNote": "Hochwertiges Feinsteinzeug als Bodenbeläge\nEinbauküche inkl. aller Geräte\nKomplett möbliert\nBad mit großem Spiegel und bodengleicher Dusche mit Rainshower\nEinbauschränke\ngroßzügige Terrasse mit Tropenholzbelag\n",
+      "locationNote": "Super zentrale Lage in Berlin Mitte - gleich gegenüber dem beliebten und schön begrünten Mauerstreifen an der Bernauer Straße ",
+      "apartmentType": "APARTMENT",
+      "lift": true,
+      "assistedLiving": false,
+      "cellar": "YES",
+      "handicappedAccessible": "NOT_APPLICABLE",
+      "condition": "FIRST_TIME_USE",
+      "interiorQuality": "LUXURY",
+      "constructionYear": 2015,
+      "numberOfBathRooms": 1.0,
+      "numberOfBedRooms": 0.0,
+      "totalRent": 1485.0,
+      "baseRent": 1300.0,
+      "livingSpace": 55.0,
+      "garden": true,
+      "balcony": true,
+      "builtInKitchen": true,
+      "numberOfRooms": 2.0,
+      "useAsFlatshareRoom": "NOT_APPLICABLE",
+      "guestToilet": "NOT_APPLICABLE",
+      "parkingSpaceType": "UNDERGROUND_GARAGE"
+    }
+  }
+}

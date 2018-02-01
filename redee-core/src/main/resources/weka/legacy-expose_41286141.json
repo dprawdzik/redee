@@ -1,0 +1,32 @@
+{
+  "expose.expose": {
+    "realEstate": {
+      "@id": "41286141",
+      "creationDate": "Jan 9, 2018 11:55:34 AM",
+      "lastModificationDate": "Jan 9, 2018 11:42:48 PM",
+      "descriptionNote": "Ihr neues Zuhause befindet sich in einem 5-geschossigen Mehrfamilienhaus mit ansprechender Altbaufassade in ruhiger Lage im Bezirk Neukölln. Der Gebäudekomplex mit seinen Stuckelementen, ansprechender Farbgestaltung und Aufzug versehenen Treppenhaus ist sehr gepflegt. Ein hübscher Garten inmitten des Wohnkomplexes lädt zum entspannten Verweilen ein.",
+      "furnishingNote": "- helle 1,5-Zimmerwohnung \n- Lage in ruhiger Seitenstraße\n- Badezimmer mit Dusche\n- Dielen\n- Küchenzeile mit Herd und Spüle\n- ein Balkon ist leider nicht vorhanden",
+      "locationNote": "Das Objekt liegt im gefragten Altbauviertel in der Nähe des Landwehrkanals. Parallel zur Stuttgarter Straße verläuft die Sonnenallee, eine zentrale Verbindungsstraße in der Stadtteillage \"Rixdorfer Kiez\" innerhalb des Stadtbezirkes Neukölln. Die Lage des Hauses bietet nicht nur Verkehrsruhe, sondern auch vielfältige Cafés, Restaurants und Einkaufsmöglichkeiten. Weiterhin sorgt der nahgelegene Treptower Park für Erholung vom Alltagsstress. Kindertagesstätten, Schulen und Spielplätze sind fußläufig zu erreichen.",
+      "otherNote": "Bewerbungen an abdallah@klingsoehr.com",
+      "apartmentType": "APARTMENT",
+      "lift": false,
+      "assistedLiving": false,
+      "cellar": "YES",
+      "handicappedAccessible": "NOT_APPLICABLE",
+      "condition": "NO_INFORMATION",
+      "interiorQuality": "NORMAL",
+      "constructionYear": 1911,
+      "numberOfBathRooms": 1.0,
+      "numberOfBedRooms": 1.0,
+      "totalRent": 605.5,
+      "baseRent": 513.5,
+      "livingSpace": 41.08,
+      "garden": false,
+      "balcony": false,
+      "builtInKitchen": false,
+      "numberOfRooms": 1.5,
+      "useAsFlatshareRoom": "NOT_APPLICABLE",
+      "guestToilet": "NOT_APPLICABLE"
+    }
+  }
+}

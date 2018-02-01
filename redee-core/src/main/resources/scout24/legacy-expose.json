@@ -1,0 +1,772 @@
+{
+  "expose.expose": {
+    "@xlink.href": "https://rest.immobilienscout24.de/restapi/api/search/v1.0/expose/97827952/api/search/v1.0/expose/97827952",
+    "@id": "97827952",
+    "@modification": "2018-01-09T12:09:01.061Z",
+    "@creation": "2017-08-18T11:08:45.000+02:00",
+    "@publishDate": "2017-08-18T11:08:45.000+02:00",
+    "@contactFormType": "EMAIL",
+    "realEstate": {
+      "@xsi.type": "expose:ApartmentRent",
+      "@id": "97827952",
+      "externalId": "97827952",
+      "title": "Zeit für Veränderung? Warum warten?",
+      "creationDate": "2017-08-18T11:08:45.000+02:00",
+      "lastModificationDate": "2018-01-09T12:09:01.061Z",
+      "address": {
+        "street": "Am Forstacker",
+        "houseNumber": "7 a",
+        "postcode": "13587",
+        "city": "Berlin",
+        "quarter": "Spandau (Spandau)",
+        "wgs84Coordinate": {
+          "latitude": 52.563427005623566,
+          "longitude": 13.199246267186302
+        },
+        "geoHierarchy": {
+          "continent": {
+            "geoCodeId": 1,
+            "fullGeoCodeId": "1"
+          },
+          "country": {
+            "name": "Deutschland",
+            "geoCodeId": 276,
+            "fullGeoCodeId": "1276"
+          },
+          "region": {
+            "name": "Berlin",
+            "geoCodeId": 3,
+            "fullGeoCodeId": "1276003"
+          },
+          "city": {
+            "name": "Berlin",
+            "geoCodeId": 1,
+            "fullGeoCodeId": "1276003001"
+          },
+          "quarter": {
+            "name": "Spandau (Spandau)",
+            "geoCodeId": 63,
+            "fullGeoCodeId": "1276003001063"
+          },
+          "neighbourhood": {
+            "geoCodeId": 11000000003881
+          }
+        }
+      },
+      "descriptionNote": "32 Wohneinheiten in 4 Geschossen, verteilt über 4 Treppenhäuser mit jeweils 8 Wohneinheiten pro Aufgang. Gepflegte Anlage, mit Gegensprechanlage, Keller\nParkmöglichkeiten befinden sich zur Zeit auf dem Gelände des ehemaligen Kaisers.",
+      "furnishingNote": "Flur, Küche, Bad mit Fliesenboden, ansonsten Parkettfussboden, Küche mit Einbau - Ober- und Unterschränken, Arbeitsplatte und ein innenliegendes Bad mit Badewanne, Balkon",
+      "locationNote": "Das Objekt befindet sich am Rand von Spandau im Ortsteil Hakenfelde, direkt am Spandauer Forst, mit den öffentlichen Verkehrsmittel ca. 10 Minuten Spandau Bahnhof, Einkaufsmöglichkeiten, Kita Schule fußläufig erreichbar",
+      "otherNote": "DIE BILDER SIND VON EINER ÄHNLICH GESCHNITTENEN WOHNUNG!\n\nHIERBEI HANDELT ES SICH UM EIN STAFFELMIETVERTRAG.",
+      "attachments": [
+        {
+          "@xlink.href": "https://rest.immobilienscout24.de/restapi/api/search/v1.0/expose/97827952/api/search/v1.0/expose/97827952/attachment",
+          "attachment": [
+            {
+              "@xsi.type": "common:Picture",
+              "@xlink.href": "https://rest.immobilienscout24.de/restapi/api/search/v1.0/expose/97827952/api/search/v1.0/expose/97827952/attachment/1",
+              "@id": "1",
+              "@modification": "2018-01-09T12:09:01.061Z",
+              "@creation": "2018-01-09T12:09:01.061Z",
+              "@publishDate": "2018-01-09T12:09:01.061Z",
+              "title": "Hausansicht",
+              "floorplan": "false",
+              "titlePicture": "true",
+              "urls": [
+                {
+                  "url": [
+                    {
+                      "@scale": "SCALE_60x60",
+                      "@href": "https://pictures.immobilienscout24.de/listings/54ca0578-f677-4554-8b5c-bef3341fa078-1174759028.jpg/ORIG/resize/60x60%3E/extent/60x60/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_118x118",
+                      "@href": "https://pictures.immobilienscout24.de/listings/54ca0578-f677-4554-8b5c-bef3341fa078-1174759028.jpg/ORIG/resize/118x118%3E/extent/118x118/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_210x210",
+                      "@href": "https://pictures.immobilienscout24.de/listings/54ca0578-f677-4554-8b5c-bef3341fa078-1174759028.jpg/ORIG/resize/210x210%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_540x540",
+                      "@href": "https://pictures.immobilienscout24.de/listings/54ca0578-f677-4554-8b5c-bef3341fa078-1174759028.jpg/ORIG/resize/540x540%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE",
+                      "@href": "https://pictures.immobilienscout24.de/listings/54ca0578-f677-4554-8b5c-bef3341fa078-1174759028.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_AND_CROP",
+                      "@href": "https://pictures.immobilienscout24.de/listings/54ca0578-f677-4554-8b5c-bef3341fa078-1174759028.jpg/ORIG/legacy_thumbnail/%WIDTH%x%HEIGHT%/format/jpg"
+                    },
+                    {
+                      "@scale": "WHITE_FILLING",
+                      "@href": "https://pictures.immobilienscout24.de/listings/54ca0578-f677-4554-8b5c-bef3341fa078-1174759028.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/extent/%WIDTH%x%HEIGHT%/format/jpg"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "@xsi.type": "common:Picture",
+              "@xlink.href": "https://rest.immobilienscout24.de/restapi/api/search/v1.0/expose/97827952/api/search/v1.0/expose/97827952/attachment/2",
+              "@id": "2",
+              "@modification": "2018-01-09T12:09:01.061Z",
+              "@creation": "2018-01-09T12:09:01.061Z",
+              "@publishDate": "2018-01-09T12:09:01.061Z",
+              "title": "Hausansicht",
+              "floorplan": "false",
+              "titlePicture": "false",
+              "urls": [
+                {
+                  "url": [
+                    {
+                      "@scale": "SCALE_60x60",
+                      "@href": "https://pictures.immobilienscout24.de/listings/e731e013-a468-4733-a495-ac5a567dd412-1174758946.jpg/ORIG/resize/60x60%3E/extent/60x60/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_118x118",
+                      "@href": "https://pictures.immobilienscout24.de/listings/e731e013-a468-4733-a495-ac5a567dd412-1174758946.jpg/ORIG/resize/118x118%3E/extent/118x118/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_210x210",
+                      "@href": "https://pictures.immobilienscout24.de/listings/e731e013-a468-4733-a495-ac5a567dd412-1174758946.jpg/ORIG/resize/210x210%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_540x540",
+                      "@href": "https://pictures.immobilienscout24.de/listings/e731e013-a468-4733-a495-ac5a567dd412-1174758946.jpg/ORIG/resize/540x540%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE",
+                      "@href": "https://pictures.immobilienscout24.de/listings/e731e013-a468-4733-a495-ac5a567dd412-1174758946.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_AND_CROP",
+                      "@href": "https://pictures.immobilienscout24.de/listings/e731e013-a468-4733-a495-ac5a567dd412-1174758946.jpg/ORIG/legacy_thumbnail/%WIDTH%x%HEIGHT%/format/jpg"
+                    },
+                    {
+                      "@scale": "WHITE_FILLING",
+                      "@href": "https://pictures.immobilienscout24.de/listings/e731e013-a468-4733-a495-ac5a567dd412-1174758946.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/extent/%WIDTH%x%HEIGHT%/format/jpg"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "@xsi.type": "common:Picture",
+              "@xlink.href": "https://rest.immobilienscout24.de/restapi/api/search/v1.0/expose/97827952/api/search/v1.0/expose/97827952/attachment/3",
+              "@id": "3",
+              "@modification": "2018-01-09T12:09:01.061Z",
+              "@creation": "2018-01-09T12:09:01.061Z",
+              "@publishDate": "2018-01-09T12:09:01.061Z",
+              "title": "Wohnzimmer",
+              "floorplan": "false",
+              "titlePicture": "false",
+              "urls": [
+                {
+                  "url": [
+                    {
+                      "@scale": "SCALE_60x60",
+                      "@href": "https://pictures.immobilienscout24.de/listings/5aa11362-c07b-4a96-bacb-2de18e8e0f48-1174707885.jpg/ORIG/resize/60x60%3E/extent/60x60/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_118x118",
+                      "@href": "https://pictures.immobilienscout24.de/listings/5aa11362-c07b-4a96-bacb-2de18e8e0f48-1174707885.jpg/ORIG/resize/118x118%3E/extent/118x118/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_210x210",
+                      "@href": "https://pictures.immobilienscout24.de/listings/5aa11362-c07b-4a96-bacb-2de18e8e0f48-1174707885.jpg/ORIG/resize/210x210%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_540x540",
+                      "@href": "https://pictures.immobilienscout24.de/listings/5aa11362-c07b-4a96-bacb-2de18e8e0f48-1174707885.jpg/ORIG/resize/540x540%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE",
+                      "@href": "https://pictures.immobilienscout24.de/listings/5aa11362-c07b-4a96-bacb-2de18e8e0f48-1174707885.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_AND_CROP",
+                      "@href": "https://pictures.immobilienscout24.de/listings/5aa11362-c07b-4a96-bacb-2de18e8e0f48-1174707885.jpg/ORIG/legacy_thumbnail/%WIDTH%x%HEIGHT%/format/jpg"
+                    },
+                    {
+                      "@scale": "WHITE_FILLING",
+                      "@href": "https://pictures.immobilienscout24.de/listings/5aa11362-c07b-4a96-bacb-2de18e8e0f48-1174707885.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/extent/%WIDTH%x%HEIGHT%/format/jpg"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "@xsi.type": "common:Picture",
+              "@xlink.href": "https://rest.immobilienscout24.de/restapi/api/search/v1.0/expose/97827952/api/search/v1.0/expose/97827952/attachment/4",
+              "@id": "4",
+              "@modification": "2018-01-09T12:09:01.061Z",
+              "@creation": "2018-01-09T12:09:01.061Z",
+              "@publishDate": "2018-01-09T12:09:01.061Z",
+              "title": "Balkon",
+              "floorplan": "false",
+              "titlePicture": "false",
+              "urls": [
+                {
+                  "url": [
+                    {
+                      "@scale": "SCALE_60x60",
+                      "@href": "https://pictures.immobilienscout24.de/listings/b2d8be10-cfa6-4a08-b403-2769079a8198-1174707242.jpg/ORIG/resize/60x60%3E/extent/60x60/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_118x118",
+                      "@href": "https://pictures.immobilienscout24.de/listings/b2d8be10-cfa6-4a08-b403-2769079a8198-1174707242.jpg/ORIG/resize/118x118%3E/extent/118x118/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_210x210",
+                      "@href": "https://pictures.immobilienscout24.de/listings/b2d8be10-cfa6-4a08-b403-2769079a8198-1174707242.jpg/ORIG/resize/210x210%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_540x540",
+                      "@href": "https://pictures.immobilienscout24.de/listings/b2d8be10-cfa6-4a08-b403-2769079a8198-1174707242.jpg/ORIG/resize/540x540%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE",
+                      "@href": "https://pictures.immobilienscout24.de/listings/b2d8be10-cfa6-4a08-b403-2769079a8198-1174707242.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_AND_CROP",
+                      "@href": "https://pictures.immobilienscout24.de/listings/b2d8be10-cfa6-4a08-b403-2769079a8198-1174707242.jpg/ORIG/legacy_thumbnail/%WIDTH%x%HEIGHT%/format/jpg"
+                    },
+                    {
+                      "@scale": "WHITE_FILLING",
+                      "@href": "https://pictures.immobilienscout24.de/listings/b2d8be10-cfa6-4a08-b403-2769079a8198-1174707242.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/extent/%WIDTH%x%HEIGHT%/format/jpg"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "@xsi.type": "common:Picture",
+              "@xlink.href": "https://rest.immobilienscout24.de/restapi/api/search/v1.0/expose/97827952/api/search/v1.0/expose/97827952/attachment/5",
+              "@id": "5",
+              "@modification": "2018-01-09T12:09:01.061Z",
+              "@creation": "2018-01-09T12:09:01.061Z",
+              "@publishDate": "2018-01-09T12:09:01.061Z",
+              "title": "Wohnzimmer",
+              "floorplan": "false",
+              "titlePicture": "false",
+              "urls": [
+                {
+                  "url": [
+                    {
+                      "@scale": "SCALE_60x60",
+                      "@href": "https://pictures.immobilienscout24.de/listings/206bf492-c111-4f77-b510-d22a1937c72e-1174707310.jpg/ORIG/resize/60x60%3E/extent/60x60/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_118x118",
+                      "@href": "https://pictures.immobilienscout24.de/listings/206bf492-c111-4f77-b510-d22a1937c72e-1174707310.jpg/ORIG/resize/118x118%3E/extent/118x118/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_210x210",
+                      "@href": "https://pictures.immobilienscout24.de/listings/206bf492-c111-4f77-b510-d22a1937c72e-1174707310.jpg/ORIG/resize/210x210%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_540x540",
+                      "@href": "https://pictures.immobilienscout24.de/listings/206bf492-c111-4f77-b510-d22a1937c72e-1174707310.jpg/ORIG/resize/540x540%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE",
+                      "@href": "https://pictures.immobilienscout24.de/listings/206bf492-c111-4f77-b510-d22a1937c72e-1174707310.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_AND_CROP",
+                      "@href": "https://pictures.immobilienscout24.de/listings/206bf492-c111-4f77-b510-d22a1937c72e-1174707310.jpg/ORIG/legacy_thumbnail/%WIDTH%x%HEIGHT%/format/jpg"
+                    },
+                    {
+                      "@scale": "WHITE_FILLING",
+                      "@href": "https://pictures.immobilienscout24.de/listings/206bf492-c111-4f77-b510-d22a1937c72e-1174707310.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/extent/%WIDTH%x%HEIGHT%/format/jpg"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "@xsi.type": "common:Picture",
+              "@xlink.href": "https://rest.immobilienscout24.de/restapi/api/search/v1.0/expose/97827952/api/search/v1.0/expose/97827952/attachment/6",
+              "@id": "6",
+              "@modification": "2018-01-09T12:09:01.061Z",
+              "@creation": "2018-01-09T12:09:01.061Z",
+              "@publishDate": "2018-01-09T12:09:01.061Z",
+              "title": "Wohnzimmer",
+              "floorplan": "false",
+              "titlePicture": "false",
+              "urls": [
+                {
+                  "url": [
+                    {
+                      "@scale": "SCALE_60x60",
+                      "@href": "https://pictures.immobilienscout24.de/listings/61c2c53e-eab7-4e24-9439-efbf6a08fbf9-1174707429.jpg/ORIG/resize/60x60%3E/extent/60x60/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_118x118",
+                      "@href": "https://pictures.immobilienscout24.de/listings/61c2c53e-eab7-4e24-9439-efbf6a08fbf9-1174707429.jpg/ORIG/resize/118x118%3E/extent/118x118/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_210x210",
+                      "@href": "https://pictures.immobilienscout24.de/listings/61c2c53e-eab7-4e24-9439-efbf6a08fbf9-1174707429.jpg/ORIG/resize/210x210%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_540x540",
+                      "@href": "https://pictures.immobilienscout24.de/listings/61c2c53e-eab7-4e24-9439-efbf6a08fbf9-1174707429.jpg/ORIG/resize/540x540%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE",
+                      "@href": "https://pictures.immobilienscout24.de/listings/61c2c53e-eab7-4e24-9439-efbf6a08fbf9-1174707429.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_AND_CROP",
+                      "@href": "https://pictures.immobilienscout24.de/listings/61c2c53e-eab7-4e24-9439-efbf6a08fbf9-1174707429.jpg/ORIG/legacy_thumbnail/%WIDTH%x%HEIGHT%/format/jpg"
+                    },
+                    {
+                      "@scale": "WHITE_FILLING",
+                      "@href": "https://pictures.immobilienscout24.de/listings/61c2c53e-eab7-4e24-9439-efbf6a08fbf9-1174707429.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/extent/%WIDTH%x%HEIGHT%/format/jpg"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "@xsi.type": "common:Picture",
+              "@xlink.href": "https://rest.immobilienscout24.de/restapi/api/search/v1.0/expose/97827952/api/search/v1.0/expose/97827952/attachment/7",
+              "@id": "7",
+              "@modification": "2018-01-09T12:09:01.061Z",
+              "@creation": "2018-01-09T12:09:01.061Z",
+              "@publishDate": "2018-01-09T12:09:01.061Z",
+              "title": "Küche",
+              "floorplan": "false",
+              "titlePicture": "false",
+              "urls": [
+                {
+                  "url": [
+                    {
+                      "@scale": "SCALE_60x60",
+                      "@href": "https://pictures.immobilienscout24.de/listings/02c99597-5068-41ff-9db6-1c960c3d5939-1174707486.jpg/ORIG/resize/60x60%3E/extent/60x60/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_118x118",
+                      "@href": "https://pictures.immobilienscout24.de/listings/02c99597-5068-41ff-9db6-1c960c3d5939-1174707486.jpg/ORIG/resize/118x118%3E/extent/118x118/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_210x210",
+                      "@href": "https://pictures.immobilienscout24.de/listings/02c99597-5068-41ff-9db6-1c960c3d5939-1174707486.jpg/ORIG/resize/210x210%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_540x540",
+                      "@href": "https://pictures.immobilienscout24.de/listings/02c99597-5068-41ff-9db6-1c960c3d5939-1174707486.jpg/ORIG/resize/540x540%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE",
+                      "@href": "https://pictures.immobilienscout24.de/listings/02c99597-5068-41ff-9db6-1c960c3d5939-1174707486.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_AND_CROP",
+                      "@href": "https://pictures.immobilienscout24.de/listings/02c99597-5068-41ff-9db6-1c960c3d5939-1174707486.jpg/ORIG/legacy_thumbnail/%WIDTH%x%HEIGHT%/format/jpg"
+                    },
+                    {
+                      "@scale": "WHITE_FILLING",
+                      "@href": "https://pictures.immobilienscout24.de/listings/02c99597-5068-41ff-9db6-1c960c3d5939-1174707486.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/extent/%WIDTH%x%HEIGHT%/format/jpg"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "@xsi.type": "common:Picture",
+              "@xlink.href": "https://rest.immobilienscout24.de/restapi/api/search/v1.0/expose/97827952/api/search/v1.0/expose/97827952/attachment/8",
+              "@id": "8",
+              "@modification": "2018-01-09T12:09:01.061Z",
+              "@creation": "2018-01-09T12:09:01.061Z",
+              "@publishDate": "2018-01-09T12:09:01.061Z",
+              "title": "Durchreiche zum Wohnzimmer",
+              "floorplan": "false",
+              "titlePicture": "false",
+              "urls": [
+                {
+                  "url": [
+                    {
+                      "@scale": "SCALE_60x60",
+                      "@href": "https://pictures.immobilienscout24.de/listings/8d20463b-9a40-4fcc-8bcd-7f553f176296-1174707823.jpg/ORIG/resize/60x60%3E/extent/60x60/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_118x118",
+                      "@href": "https://pictures.immobilienscout24.de/listings/8d20463b-9a40-4fcc-8bcd-7f553f176296-1174707823.jpg/ORIG/resize/118x118%3E/extent/118x118/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_210x210",
+                      "@href": "https://pictures.immobilienscout24.de/listings/8d20463b-9a40-4fcc-8bcd-7f553f176296-1174707823.jpg/ORIG/resize/210x210%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_540x540",
+                      "@href": "https://pictures.immobilienscout24.de/listings/8d20463b-9a40-4fcc-8bcd-7f553f176296-1174707823.jpg/ORIG/resize/540x540%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE",
+                      "@href": "https://pictures.immobilienscout24.de/listings/8d20463b-9a40-4fcc-8bcd-7f553f176296-1174707823.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_AND_CROP",
+                      "@href": "https://pictures.immobilienscout24.de/listings/8d20463b-9a40-4fcc-8bcd-7f553f176296-1174707823.jpg/ORIG/legacy_thumbnail/%WIDTH%x%HEIGHT%/format/jpg"
+                    },
+                    {
+                      "@scale": "WHITE_FILLING",
+                      "@href": "https://pictures.immobilienscout24.de/listings/8d20463b-9a40-4fcc-8bcd-7f553f176296-1174707823.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/extent/%WIDTH%x%HEIGHT%/format/jpg"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "@xsi.type": "common:Picture",
+              "@xlink.href": "https://rest.immobilienscout24.de/restapi/api/search/v1.0/expose/97827952/api/search/v1.0/expose/97827952/attachment/9",
+              "@id": "9",
+              "@modification": "2018-01-09T12:09:01.061Z",
+              "@creation": "2018-01-09T12:09:01.061Z",
+              "@publishDate": "2018-01-09T12:09:01.061Z",
+              "title": "Badezimmer",
+              "floorplan": "false",
+              "titlePicture": "false",
+              "urls": [
+                {
+                  "url": [
+                    {
+                      "@scale": "SCALE_60x60",
+                      "@href": "https://pictures.immobilienscout24.de/listings/a38a8b12-29b3-45c0-b661-4214938afe90-1174707525.jpg/ORIG/resize/60x60%3E/extent/60x60/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_118x118",
+                      "@href": "https://pictures.immobilienscout24.de/listings/a38a8b12-29b3-45c0-b661-4214938afe90-1174707525.jpg/ORIG/resize/118x118%3E/extent/118x118/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_210x210",
+                      "@href": "https://pictures.immobilienscout24.de/listings/a38a8b12-29b3-45c0-b661-4214938afe90-1174707525.jpg/ORIG/resize/210x210%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_540x540",
+                      "@href": "https://pictures.immobilienscout24.de/listings/a38a8b12-29b3-45c0-b661-4214938afe90-1174707525.jpg/ORIG/resize/540x540%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE",
+                      "@href": "https://pictures.immobilienscout24.de/listings/a38a8b12-29b3-45c0-b661-4214938afe90-1174707525.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_AND_CROP",
+                      "@href": "https://pictures.immobilienscout24.de/listings/a38a8b12-29b3-45c0-b661-4214938afe90-1174707525.jpg/ORIG/legacy_thumbnail/%WIDTH%x%HEIGHT%/format/jpg"
+                    },
+                    {
+                      "@scale": "WHITE_FILLING",
+                      "@href": "https://pictures.immobilienscout24.de/listings/a38a8b12-29b3-45c0-b661-4214938afe90-1174707525.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/extent/%WIDTH%x%HEIGHT%/format/jpg"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "@xsi.type": "common:Picture",
+              "@xlink.href": "https://rest.immobilienscout24.de/restapi/api/search/v1.0/expose/97827952/api/search/v1.0/expose/97827952/attachment/10",
+              "@id": "10",
+              "@modification": "2018-01-09T12:09:01.061Z",
+              "@creation": "2018-01-09T12:09:01.061Z",
+              "@publishDate": "2018-01-09T12:09:01.061Z",
+              "title": "Flur mit Einbauschrank",
+              "floorplan": "false",
+              "titlePicture": "false",
+              "urls": [
+                {
+                  "url": [
+                    {
+                      "@scale": "SCALE_60x60",
+                      "@href": "https://pictures.immobilienscout24.de/listings/28df7d4e-4b50-4861-a7e9-519900e65be0-1174707623.jpg/ORIG/resize/60x60%3E/extent/60x60/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_118x118",
+                      "@href": "https://pictures.immobilienscout24.de/listings/28df7d4e-4b50-4861-a7e9-519900e65be0-1174707623.jpg/ORIG/resize/118x118%3E/extent/118x118/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_210x210",
+                      "@href": "https://pictures.immobilienscout24.de/listings/28df7d4e-4b50-4861-a7e9-519900e65be0-1174707623.jpg/ORIG/resize/210x210%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_540x540",
+                      "@href": "https://pictures.immobilienscout24.de/listings/28df7d4e-4b50-4861-a7e9-519900e65be0-1174707623.jpg/ORIG/resize/540x540%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE",
+                      "@href": "https://pictures.immobilienscout24.de/listings/28df7d4e-4b50-4861-a7e9-519900e65be0-1174707623.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_AND_CROP",
+                      "@href": "https://pictures.immobilienscout24.de/listings/28df7d4e-4b50-4861-a7e9-519900e65be0-1174707623.jpg/ORIG/legacy_thumbnail/%WIDTH%x%HEIGHT%/format/jpg"
+                    },
+                    {
+                      "@scale": "WHITE_FILLING",
+                      "@href": "https://pictures.immobilienscout24.de/listings/28df7d4e-4b50-4861-a7e9-519900e65be0-1174707623.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/extent/%WIDTH%x%HEIGHT%/format/jpg"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "@xsi.type": "common:Picture",
+              "@xlink.href": "https://rest.immobilienscout24.de/restapi/api/search/v1.0/expose/97827952/api/search/v1.0/expose/97827952/attachment/11",
+              "@id": "11",
+              "@modification": "2018-01-09T12:09:01.061Z",
+              "@creation": "2018-01-09T12:09:01.061Z",
+              "@publishDate": "2018-01-09T12:09:01.061Z",
+              "title": "Flur",
+              "floorplan": "false",
+              "titlePicture": "false",
+              "urls": [
+                {
+                  "url": [
+                    {
+                      "@scale": "SCALE_60x60",
+                      "@href": "https://pictures.immobilienscout24.de/listings/50225b65-c92c-441e-a411-88695cac7e8a-1174707670.jpg/ORIG/resize/60x60%3E/extent/60x60/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_118x118",
+                      "@href": "https://pictures.immobilienscout24.de/listings/50225b65-c92c-441e-a411-88695cac7e8a-1174707670.jpg/ORIG/resize/118x118%3E/extent/118x118/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_210x210",
+                      "@href": "https://pictures.immobilienscout24.de/listings/50225b65-c92c-441e-a411-88695cac7e8a-1174707670.jpg/ORIG/resize/210x210%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_540x540",
+                      "@href": "https://pictures.immobilienscout24.de/listings/50225b65-c92c-441e-a411-88695cac7e8a-1174707670.jpg/ORIG/resize/540x540%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE",
+                      "@href": "https://pictures.immobilienscout24.de/listings/50225b65-c92c-441e-a411-88695cac7e8a-1174707670.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_AND_CROP",
+                      "@href": "https://pictures.immobilienscout24.de/listings/50225b65-c92c-441e-a411-88695cac7e8a-1174707670.jpg/ORIG/legacy_thumbnail/%WIDTH%x%HEIGHT%/format/jpg"
+                    },
+                    {
+                      "@scale": "WHITE_FILLING",
+                      "@href": "https://pictures.immobilienscout24.de/listings/50225b65-c92c-441e-a411-88695cac7e8a-1174707670.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/extent/%WIDTH%x%HEIGHT%/format/jpg"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "@xsi.type": "common:Picture",
+              "@xlink.href": "https://rest.immobilienscout24.de/restapi/api/search/v1.0/expose/97827952/api/search/v1.0/expose/97827952/attachment/12",
+              "@id": "12",
+              "@modification": "2018-01-09T12:09:01.061Z",
+              "@creation": "2018-01-09T12:09:01.061Z",
+              "@publishDate": "2018-01-09T12:09:01.061Z",
+              "title": "Schlafzimmer",
+              "floorplan": "false",
+              "titlePicture": "false",
+              "urls": [
+                {
+                  "url": [
+                    {
+                      "@scale": "SCALE_60x60",
+                      "@href": "https://pictures.immobilienscout24.de/listings/a3d75aa9-33fb-4fb1-8356-7055e9bb323c-1174707739.jpg/ORIG/resize/60x60%3E/extent/60x60/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_118x118",
+                      "@href": "https://pictures.immobilienscout24.de/listings/a3d75aa9-33fb-4fb1-8356-7055e9bb323c-1174707739.jpg/ORIG/resize/118x118%3E/extent/118x118/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_210x210",
+                      "@href": "https://pictures.immobilienscout24.de/listings/a3d75aa9-33fb-4fb1-8356-7055e9bb323c-1174707739.jpg/ORIG/resize/210x210%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_540x540",
+                      "@href": "https://pictures.immobilienscout24.de/listings/a3d75aa9-33fb-4fb1-8356-7055e9bb323c-1174707739.jpg/ORIG/resize/540x540%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE",
+                      "@href": "https://pictures.immobilienscout24.de/listings/a3d75aa9-33fb-4fb1-8356-7055e9bb323c-1174707739.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/format/jpg"
+                    },
+                    {
+                      "@scale": "SCALE_AND_CROP",
+                      "@href": "https://pictures.immobilienscout24.de/listings/a3d75aa9-33fb-4fb1-8356-7055e9bb323c-1174707739.jpg/ORIG/legacy_thumbnail/%WIDTH%x%HEIGHT%/format/jpg"
+                    },
+                    {
+                      "@scale": "WHITE_FILLING",
+                      "@href": "https://pictures.immobilienscout24.de/listings/a3d75aa9-33fb-4fb1-8356-7055e9bb323c-1174707739.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/extent/%WIDTH%x%HEIGHT%/format/jpg"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "@xsi.type": "common:PDFDocument",
+              "@xlink.href": "https://rest.immobilienscout24.de/restapi/api/search/v1.0/expose/97827952/api/search/v1.0/expose/97827952/attachment/13",
+              "@id": "13",
+              "@modification": "2018-01-09T12:09:01.061Z",
+              "@creation": "2018-01-09T12:09:01.061Z",
+              "@publishDate": "2018-01-09T12:09:01.061Z",
+              "title": "Grundriss",
+              "url": "https://d2qfnj9mv71tll.cloudfront.net/e667678b-01d5-462d-8cb0-32c10ec25fb4-1177811336.pdf",
+              "floorplan": "true"
+            }
+          ]
+        }
+      ],
+      "referencePriceServiceCall": "https://www.immobilienscout24.de/realestatevaluation/ajax/v2.2/referenceprice/region/3/city/1/district/63?realEstateType=0&price=8.84&livingArea=85.42&constructionYear=1994&firstTimeUse=false",
+      "referencePriceApiCall": "https://www.immobilienscout24.de/realestatevaluation/ajax/v2.2/referenceprice/region/3/city/1/district/63?realEstateType=0&price=8.84&livingArea=85.42&constructionYear=1994&firstTimeUse=false",
+      "state": "ACTIVE",
+      "titlePicture": {
+        "@id": "1",
+        "@modification": "2018-01-09T12:09:01.061Z",
+        "@creation": "2018-01-09T12:09:01.061Z",
+        "@publishDate": "2018-01-09T12:09:01.061Z",
+        "title": "Hausansicht",
+        "floorplan": "false",
+        "titlePicture": "true",
+        "urls": [
+          {
+            "url": [
+              {
+                "@scale": "SCALE_60x60",
+                "@href": "https://pictures.immobilienscout24.de/listings/54ca0578-f677-4554-8b5c-bef3341fa078-1174759028.jpg/ORIG/resize/60x60%3E/extent/60x60/format/jpg"
+              },
+              {
+                "@scale": "SCALE_118x118",
+                "@href": "https://pictures.immobilienscout24.de/listings/54ca0578-f677-4554-8b5c-bef3341fa078-1174759028.jpg/ORIG/resize/118x118%3E/extent/118x118/format/jpg"
+              },
+              {
+                "@scale": "SCALE_210x210",
+                "@href": "https://pictures.immobilienscout24.de/listings/54ca0578-f677-4554-8b5c-bef3341fa078-1174759028.jpg/ORIG/resize/210x210%3E/format/jpg"
+              },
+              {
+                "@scale": "SCALE_540x540",
+                "@href": "https://pictures.immobilienscout24.de/listings/54ca0578-f677-4554-8b5c-bef3341fa078-1174759028.jpg/ORIG/resize/540x540%3E/format/jpg"
+              },
+              {
+                "@scale": "SCALE",
+                "@href": "https://pictures.immobilienscout24.de/listings/54ca0578-f677-4554-8b5c-bef3341fa078-1174759028.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/format/jpg"
+              },
+              {
+                "@scale": "SCALE_AND_CROP",
+                "@href": "https://pictures.immobilienscout24.de/listings/54ca0578-f677-4554-8b5c-bef3341fa078-1174759028.jpg/ORIG/legacy_thumbnail/%WIDTH%x%HEIGHT%/format/jpg"
+              },
+              {
+                "@scale": "WHITE_FILLING",
+                "@href": "https://pictures.immobilienscout24.de/listings/54ca0578-f677-4554-8b5c-bef3341fa078-1174759028.jpg/ORIG/resize/%WIDTH%x%HEIGHT%%3E/extent/%WIDTH%x%HEIGHT%/format/jpg"
+              }
+            ]
+          }
+        ]
+      },
+      "floorplan": "true",
+      "apartmentType": "GROUND_FLOOR",
+      "floor": 0,
+      "lift": "false",
+      "assistedLiving": "false",
+      "energyCertificate": {
+        "energyCertificateAvailability": "AVAILABLE",
+        "energyCertificateCreationDate": "BEFORE_01_MAY_2014"
+      },
+      "cellar": "YES",
+      "handicappedAccessible": "NOT_APPLICABLE",
+      "condition": "WELL_KEPT",
+      "interiorQuality": "SOPHISTICATED",
+      "constructionYear": 1994,
+      "freeFrom": "01.02.2018",
+      "heatingTypeEnev2014": "GAS_HEATING",
+      "energySourcesEnev2014": {
+        "energySourceEnev2014": "ACID_GAS"
+      },
+      "buildingEnergyRatingType": "ENERGY_REQUIRED",
+      "thermalCharacteristic": 125,
+      "energyConsumptionContainsWarmWater": "NOT_APPLICABLE",
+      "numberOfFloors": 3,
+      "usableFloorSpace": 85.42,
+      "numberOfBedRooms": 1,
+      "numberOfBathRooms": 1,
+      "guestToilet": "NOT_APPLICABLE",
+      "parkingSpaceType": "OUTSIDE",
+      "baseRent": 755.11,
+      "totalRent": 970.11,
+      "serviceCharge": 125,
+      "deposit": "2.265,33 Euro",
+      "heatingCosts": 90,
+      "heatingCostsInServiceCharge": "NO",
+      "calculatedTotalRent": 970.11,
+      "calculatedTotalRentScope": "WARM_RENT",
+      "petsAllowed": "NEGOTIABLE",
+      "useAsFlatshareRoom": "NOT_APPLICABLE",
+      "livingSpace": 85.42,
+      "numberOfRooms": 3,
+      "energyPerformanceCertificate": "true",
+      "builtInKitchen": "true",
+      "balcony": "true",
+      "certificateOfEligibilityNeeded": "false",
+      "garden": "false",
+      "courtage": {
+        "hasCourtage": "NOT_APPLICABLE"
+      }
+    },
+    "contactDetails": {
+      "@id": "97827952",
+      "salutation": "NO_SALUTATION",
+      "lastname": "Milkowsky",
+      "faxNumberCountryCode": "+49",
+      "faxNumberAreaCode": "3322",
+      "faxNumberSubscriber": "240850",
+      "faxNumber": "03322 240850",
+      "phoneNumberCountryCode": "+49",
+      "phoneNumberAreaCode": "3322",
+      "phoneNumberSubscriber": "240840",
+      "phoneNumber": "03322 240840",
+      "cellPhoneNumber": "",
+      "address": {
+        "street": "Barkhausenstr.",
+        "houseNumber": "67",
+        "postcode": "14612",
+        "city": "Falkensee"
+      },
+      "countryCode": "DEU",
+      "title": "Hausverwaltung ",
+      "company": "Hausverwaltung Milkowsky"
+    },
+    "imprintLink": {
+      "@xlink.href": "https://rest.immobilienscout24.de/restapi/api/search/v1.0/expose/97827952/api/search/v1.0/expose/97827952/imprint"
+    },
+    "realtorValuationJSONLink": {
+      "@xlink.href": "https://www.immobilienscout24.de/expose/realtorEvaluation/no-information"
+    },
+    "realtorValuationV2JSONLink": {
+      "@xlink.href": "https://www.immobilienscout24.de/expose/realtorEvaluation/no-information"
+    },
+    "realtorValuationV2JSONPLink": {
+      "@xlink.href": "https://www.immobilienscout24.de/expose/realtorEvaluation/no-information"
+    },
+    "companyWideCustomerId": "001.178316",
+    "contactFormConfiguration": {
+      "moveInDateField": "OPTIONAL",
+      "petsInHouseholdField": "OPTIONAL",
+      "numberOfPersonsField": "OPTIONAL",
+      "employmentRelationshipField": "OPTIONAL",
+      "incomeField": "OPTIONAL",
+      "firstnameField": "OPTIONAL",
+      "lastnameField": "MANDATORY",
+      "phoneNumberField": "OPTIONAL",
+      "emailAddressField": "MANDATORY",
+      "addressField": "OPTIONAL",
+      "applicationPackageCompletedField": "OPTIONAL",
+      "salutationField": "MANDATORY",
+      "messageField": "OPTIONAL",
+      "premiumProfileRequired": "false"
+    },
+    "adLinkForXMLData": {
+      "@xlink.href": "https://pubads.g.doubleclick.net/gampad/adx?iu=/4467/IS24_APP_DE/app_gallery_ad&sz=420x315&c=2&dpt=1&pre=1%3Dis54&tile=1&m=text/xml&t=obj_regio1%3DBerlin%26obj_serviceCharge%3D125%26obj_heatingType%3Dgas_heating%26obj_cId%3D178316%26obj_newlyConst%3Dn%26obj_balcony%3Dy%26obj_picture%3Dhttps%3A%2F%2Fpictures.immobilienscout24.de%2Flistings%2F54ca0578-f677-4554-8b5c-bef3341fa078-1174759028.jpg%2FORIG%2Fresize%2F118x118%25253E%2Fextent%2F118x118%2Fformat%2Fjpg%26obj_picturecount%3D12%26obj_totalRent%3D970.11%26obj_yearConstructed%3D1994%26obj_scoutId%3D97827952%26obj_firingTypes%3Dnatural_gas_light%26obj_hasKitchen%3Dy%26geo_bln%3DBerlin%26obj_cellar%3Dy%26obj_yearConstructedRange%3D5%26obj_baseRent%3D755.11%26obj_houseNumber%3D7%2520a%26obj_energyType%3Denergy_required%26obj_livingSpace%3D85.42%26geo_krs%3DBerlin%26obj_zipCode%3D13587%26obj_condition%3Dwell_kept%26obj_interiorQual%3Dsophisticated%26obj_petsAllowed%3Dnegotiable%26obj_street%3DAm%2520Forstacker%26obj_lift%3Dn%26obj_depositLink%3Dn%26obj_baseRentRange%3D5%26obj_streetPlain%3DAm_Forstacker%26obj_typeOfFlat%3Dground_floor%26geo_plz%3D13587%26obj_noRooms%3D3%26obj_assistedLiving%3Dn%26obj_thermalChar%3D125%26obj_ityp%3D0%2Cactive%26geo_land%3DDeutschland%26obj_immotype%3Dwohnung_miete%26obj_heatingCosts%3D90%26obj_floor%3D0%26obj_cwId%3D001.178316%26obj_numberOfFloors%3D3%26obj_noRoomsRange%3D3%26obj_garden%3Dn%26obj_barrierFree%3Dn%26obj_regio3%3DSpandau_Spandau%26obj_objectnumber%3D97827952%26obj_livingSpaceRange%3D4%26obj_regio2%3DBerlin"
+    },
+    "adLinkForJSONP": {
+      "@xlink.href": "pubads.g.doubleclick.net/gampad/adx?iu=/4467/IS24_APP_DE/app_gallery_ad&sz=420x315&c=2&dpt=1&pre=1%3Dis54&tile=1&m=text/xml&t=obj_regio1%3DBerlin%26obj_serviceCharge%3D125%26obj_heatingType%3Dgas_heating%26obj_cId%3D178316%26obj_newlyConst%3Dn%26obj_balcony%3Dy%26obj_picture%3Dhttps%3A%2F%2Fpictures.immobilienscout24.de%2Flistings%2F54ca0578-f677-4554-8b5c-bef3341fa078-1174759028.jpg%2FORIG%2Fresize%2F118x118%25253E%2Fextent%2F118x118%2Fformat%2Fjpg%26obj_picturecount%3D12%26obj_totalRent%3D970.11%26obj_yearConstructed%3D1994%26obj_scoutId%3D97827952%26obj_firingTypes%3Dnatural_gas_light%26obj_hasKitchen%3Dy%26geo_bln%3DBerlin%26obj_cellar%3Dy%26obj_yearConstructedRange%3D5%26obj_baseRent%3D755.11%26obj_houseNumber%3D7%2520a%26obj_energyType%3Denergy_required%26obj_livingSpace%3D85.42%26geo_krs%3DBerlin%26obj_zipCode%3D13587%26obj_condition%3Dwell_kept%26obj_interiorQual%3Dsophisticated%26obj_petsAllowed%3Dnegotiable%26obj_street%3DAm%2520Forstacker%26obj_lift%3Dn%26obj_depositLink%3Dn%26obj_baseRentRange%3D5%26obj_streetPlain%3DAm_Forstacker%26obj_typeOfFlat%3Dground_floor%26geo_plz%3D13587%26obj_noRooms%3D3%26obj_assistedLiving%3Dn%26obj_thermalChar%3D125%26obj_ityp%3D0%2Cactive%26geo_land%3DDeutschland%26obj_immotype%3Dwohnung_miete%26obj_heatingCosts%3D90%26obj_floor%3D0%26obj_cwId%3D001.178316%26obj_numberOfFloors%3D3%26obj_noRoomsRange%3D3%26obj_garden%3Dn%26obj_barrierFree%3Dn%26obj_regio3%3DSpandau_Spandau%26obj_objectnumber%3D97827952%26obj_livingSpaceRange%3D4%26obj_regio2%3DBerlin"
+    }
+  }
+}

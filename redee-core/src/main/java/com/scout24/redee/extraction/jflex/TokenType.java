@@ -19,5 +19,7 @@ public class TokenType {
     public static String PUNCTUATION = "PUNCTUATION";
     public static String SENTENCEMARKER = "SENTENCEMARKER";
     public static String APPOINTMENT = "APPOINTMENT";
+    public static String BALCONY = "BALCONY";
+    public static String NEGATION = "NEGATION";
 
 }

@@ -24,13 +24,22 @@ public class InformationExtractionApp {
     }
 
     private static void extract() throws IOException, ResourceException, ParseException {
+
+        int amountExpose = 0;
+        int amountCorrectExtractedVisitAppointments = 0;
         Gson gson = new Gson();
-        StanfordInformationExtractor extractor = new StanfordInformationExtractor();
-        String json = FileUtils.readFileToString(new File("/Users/dprawdzik/#Projects/Hackday/2018.Q1/3-Data/Expose/expose-20-pages.json"), "UTF-8");
+        StanfordInformationExtractor extractor = new StanfordInformationExtractor("stanford/pattern/date.pttrn");
+        String fileName = "expose_apartment-rent_20-pages.json";
+        fileName = "expose_apartmentbuy_20-pages.json";
+        fileName = "expose_apartmentbuy_20-pages.json";
+        String json = FileUtils.readFileToString(new File("/Users/dprawdzik/#Projects/Hackday/2018.Q1/3-Data/Expose/"+ fileName), "UTF-8");
         Type listType = new TypeToken<List<Expose>>() {}.getType();
         List<Expose> exposes = gson.fromJson(json, listType);
         for (Expose expose : exposes) {
+            amountExpose++;
             String[] contents = {expose.title, expose.descriptionNote, expose.locationNote};
+
+            // over all exposés
             for (String content : contents) {
                 if(content == null)
                     continue;
@@ -40,6 +49,9 @@ public class InformationExtractionApp {
                         System.out.println("Something went wrong!");
                     System.out.println(content);
                 } else {
+                    if(extractions.size() != 0)
+                        amountCorrectExtractedVisitAppointments++;
+
                     for (DateExtraction extraction : extractions) {
                         System.out.println(extraction.getText());
                         System.out.println(extraction.getStart());
@@ -47,6 +59,9 @@ public class InformationExtractionApp {
                 }
             }
         }
+        System.out.println("# exposés\t" + amountExpose);
+        System.out.println("# correct extracted visit appointments\t" + amountCorrectExtractedVisitAppointments);
+        System.out.println("# missed visit appointments\t");
 
     }
 }
