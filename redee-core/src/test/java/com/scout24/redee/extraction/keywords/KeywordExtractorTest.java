@@ -9,12 +9,12 @@ import static org.junit.Assert.assertArrayEquals;
 
 public class KeywordExtractorTest {
 
-    String[] availableKeywords = new String[]{
-            "Einbauküche",
-            "Garage",
-            "Terrasse",
-            "Garten",
-            "Keller"
+    KeywordsHolder[] availableKeywords = new KeywordsHolder[]{
+            new KeywordsHolder("Einbauküche", new String[]{"Einbauküche"}),
+            new KeywordsHolder("Garage", new String[]{"Garage"}),
+            new KeywordsHolder("Terrasse", new String[]{"Terrasse"}),
+            new KeywordsHolder("Garten", new String[]{"Garten"}),
+            new KeywordsHolder("Keller", new String[]{"Keller"})
     };
     KeywordExtractor keywordExtractor;
 

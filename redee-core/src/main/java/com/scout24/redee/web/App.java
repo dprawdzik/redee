@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.scout24.redee.exception.ResourceException;
 import com.scout24.redee.extraction.DateExtraction;
 import com.scout24.redee.extraction.keywords.KeywordExtractor;
+import com.scout24.redee.extraction.keywords.KeywordsHolder;
 import com.scout24.redee.extraction.stanford.StanfordInformationExtractor;
 import fi.iki.elonen.NanoHTTPD;
 
@@ -31,8 +32,8 @@ public class App extends NanoHTTPD {
         start(NanoHTTPD.SOCKET_READ_TIMEOUT, false);
         System.out.println("\nRunning! Point your browsers to http://localhost:8080/ \n");
 
-        String keywordsString = new String(Files.readAllBytes(Paths.get( "redee-core/src/main/resources/scout24/keywords.json")));
-        keywordExtractor = new KeywordExtractor(gson.fromJson(keywordsString, String[].class));
+        String keywordsString = new String(Files.readAllBytes(Paths.get( "redee-core/src/main/resources/scout24/keywords_extended.json")));
+        keywordExtractor = new KeywordExtractor(gson.fromJson(keywordsString, KeywordsHolder[].class));
 
         try {
             stanfordInformationExtractor = new StanfordInformationExtractor("stanford/pattern/date.pttrn");
